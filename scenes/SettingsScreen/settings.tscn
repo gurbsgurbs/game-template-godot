@@ -1,0 +1,99 @@
+[gd_scene format=3 uid="uid://dai0tljd17vj1"]
+
+[ext_resource type="Script" uid="uid://ckopoc6njolww" path="res://Scenes/SettingsScreen/settings.gd" id="1_yemuq"]
+
+[sub_resource type="ButtonGroup" id="ButtonGroup_yemuq"]
+
+[node name="Settings" type="Control" unique_id=2036547224]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_yemuq")
+
+[node name="AspectRatioOptions" type="HBoxContainer" parent="." unique_id=1277819989]
+layout_mode = 0
+offset_left = 198.0
+offset_top = 59.0
+offset_right = 396.0
+offset_bottom = 99.0
+
+[node name="Radio_16_9" type="CheckBox" parent="AspectRatioOptions" unique_id=642739546]
+layout_mode = 2
+button_pressed = true
+button_group = SubResource("ButtonGroup_yemuq")
+text = "16:9"
+
+[node name="Radio_16_10" type="CheckBox" parent="AspectRatioOptions" unique_id=1781727203]
+layout_mode = 2
+button_group = SubResource("ButtonGroup_yemuq")
+text = "16:10"
+
+[node name="Radio_21_9" type="CheckBox" parent="AspectRatioOptions" unique_id=1907087728]
+layout_mode = 2
+button_group = SubResource("ButtonGroup_yemuq")
+text = "21:9
+"
+
+[node name="ResolutionOption" type="OptionButton" parent="." unique_id=672244200]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 195.0
+offset_top = 121.0
+offset_right = 689.0
+offset_bottom = 196.0
+theme_override_font_sizes/font_size = 48
+selected = 0
+item_count = 3
+popup/item_0/text = "1920x1080"
+popup/item_0/id = 0
+popup/item_1/text = "1280x720"
+popup/item_1/id = 1
+popup/item_2/text = "1440x900"
+popup/item_2/id = 2
+
+[node name="DisplayOption" type="OptionButton" parent="." unique_id=1141963457]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 195.0
+offset_top = 227.0
+offset_right = 689.0
+offset_bottom = 302.0
+theme_override_font_sizes/font_size = 48
+selected = 0
+item_count = 3
+popup/item_0/text = "Fullscreen"
+popup/item_0/id = 0
+popup/item_1/text = "Windowed"
+popup/item_1/id = 1
+popup/item_2/text = "Borderless"
+popup/item_2/id = 2
+
+[node name="MasterVolume" type="HSlider" parent="." unique_id=157129071]
+layout_mode = 0
+offset_left = 196.0
+offset_top = 461.0
+offset_right = 609.0
+offset_bottom = 477.0
+
+[node name="SFXVolume" type="HSlider" parent="." unique_id=1069654554]
+layout_mode = 0
+offset_left = 200.0
+offset_top = 506.0
+offset_right = 613.0
+offset_bottom = 522.0
+
+[node name="MusicVolume" type="HSlider" parent="." unique_id=1789276055]
+layout_mode = 0
+offset_left = 246.0
+offset_top = 549.0
+offset_right = 659.0
+offset_bottom = 565.0
+
+[connection signal="pressed" from="AspectRatioOptions/Radio_16_9" to="." method="_on_radio_16_9_pressed"]
+[connection signal="pressed" from="AspectRatioOptions/Radio_16_10" to="." method="_on_radio_16_10_pressed"]
+[connection signal="pressed" from="AspectRatioOptions/Radio_21_9" to="." method="_on_radio_21_9_pressed"]
+[connection signal="item_selected" from="ResolutionOption" to="." method="_on_resolution_option_item_selected"]
+[connection signal="item_selected" from="DisplayOption" to="." method="_on_display_option_item_selected"]
