@@ -10,7 +10,7 @@ config_version=5
 
 [application]
 
-config/name="Game Skeleton"
+config/name="Game Template for Godot"
 config/features=PackedStringArray("4.6", "Mobile")
 config/icon="res://icon.svg"
 

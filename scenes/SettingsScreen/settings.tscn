@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://dai0tljd17vj1"]
 
-[ext_resource type="Script" uid="uid://ckopoc6njolww" path="res://Scenes/SettingsScreen/settings.gd" id="1_yemuq"]
+[ext_resource type="Script" uid="uid://ckopoc6njolww" path="res://scenes/SettingsScreen/settings.gd" id="1_yemuq"]
 
 [sub_resource type="ButtonGroup" id="ButtonGroup_yemuq"]
 
