@@ -1,8 +1,11 @@
 [gd_scene format=3 uid="uid://dai0tljd17vj1"]
 
 [ext_resource type="Script" uid="uid://ckopoc6njolww" path="res://scenes/SettingsScreen/settings.gd" id="1_yemuq"]
+[ext_resource type="Texture2D" uid="uid://bnxrb4qxgm6u0" path="res://icon.svg" id="2_knxsi"]
 
 [sub_resource type="ButtonGroup" id="ButtonGroup_yemuq"]
+
+[sub_resource type="ButtonGroup" id="ButtonGroup_knxsi"]
 
 [node name="Settings" type="Control" unique_id=2036547224]
 layout_mode = 3
@@ -13,38 +16,60 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_yemuq")
 
-[node name="AspectRatioOptions" type="HBoxContainer" parent="." unique_id=1277819989]
-layout_mode = 0
-offset_left = 198.0
-offset_top = 59.0
-offset_right = 396.0
-offset_bottom = 99.0
+[node name="Video Settings" type="VBoxContainer" parent="." unique_id=1309399548]
+layout_mode = 1
+offset_left = 52.0
+offset_top = 56.0
+offset_right = 369.0
+offset_bottom = 353.0
+theme_override_constants/separation = 24
 
-[node name="Radio_16_9" type="CheckBox" parent="AspectRatioOptions" unique_id=642739546]
+[node name="VideoSettings_Label" type="Label" parent="Video Settings" unique_id=933002949]
+layout_mode = 2
+text = "Video Settings"
+
+[node name="AspectRatio_VBox" type="VBoxContainer" parent="Video Settings" unique_id=1163222064]
+layout_mode = 2
+
+[node name="Aspect_Label" type="Label" parent="Video Settings/AspectRatio_VBox" unique_id=1687581141]
+layout_mode = 2
+text = "Aspect Ratio"
+
+[node name="AspectRatio_HBox" type="HBoxContainer" parent="Video Settings/AspectRatio_VBox" unique_id=1277819989]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="16_9_Radio" type="CheckBox" parent="Video Settings/AspectRatio_VBox/AspectRatio_HBox" unique_id=642739546]
+unique_name_in_owner = true
 layout_mode = 2
 button_pressed = true
 button_group = SubResource("ButtonGroup_yemuq")
 text = "16:9"
 
-[node name="Radio_16_10" type="CheckBox" parent="AspectRatioOptions" unique_id=1781727203]
+[node name="16_10_Radio" type="CheckBox" parent="Video Settings/AspectRatio_VBox/AspectRatio_HBox" unique_id=1781727203]
+unique_name_in_owner = true
 layout_mode = 2
 button_group = SubResource("ButtonGroup_yemuq")
 text = "16:10"
 
-[node name="Radio_21_9" type="CheckBox" parent="AspectRatioOptions" unique_id=1907087728]
+[node name="21_9_Radio" type="CheckBox" parent="Video Settings/AspectRatio_VBox/AspectRatio_HBox" unique_id=1907087728]
+unique_name_in_owner = true
 layout_mode = 2
 button_group = SubResource("ButtonGroup_yemuq")
 text = "21:9
 "
 
-[node name="ResolutionOption" type="OptionButton" parent="." unique_id=672244200]
+[node name="Resolution_HBox" type="HBoxContainer" parent="Video Settings" unique_id=633694891]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="Resolution_Label" type="Label" parent="Video Settings/Resolution_HBox" unique_id=1268373054]
+layout_mode = 2
+text = "Resolution"
+
+[node name="Resolution_Option" type="OptionButton" parent="Video Settings/Resolution_HBox" unique_id=672244200]
 unique_name_in_owner = true
-layout_mode = 0
-offset_left = 195.0
-offset_top = 121.0
-offset_right = 689.0
-offset_bottom = 196.0
-theme_override_font_sizes/font_size = 48
+layout_mode = 2
 selected = 0
 item_count = 3
 popup/item_0/text = "1920x1080"
@@ -54,46 +79,131 @@ popup/item_1/id = 1
 popup/item_2/text = "1440x900"
 popup/item_2/id = 2
 
-[node name="DisplayOption" type="OptionButton" parent="." unique_id=1141963457]
+[node name="Fullscreen_Toggle" type="CheckButton" parent="Video Settings" unique_id=1096554328]
 unique_name_in_owner = true
-layout_mode = 0
-offset_left = 195.0
-offset_top = 227.0
-offset_right = 689.0
-offset_bottom = 302.0
-theme_override_font_sizes/font_size = 48
-selected = 0
-item_count = 3
-popup/item_0/text = "Fullscreen"
-popup/item_0/id = 0
-popup/item_1/text = "Windowed"
-popup/item_1/id = 1
-popup/item_2/text = "Borderless"
-popup/item_2/id = 2
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_constants/h_separation = 16
+button_pressed = true
+text = "Fullscreen"
 
-[node name="MasterVolume" type="HSlider" parent="." unique_id=157129071]
-layout_mode = 0
-offset_left = 196.0
-offset_top = 461.0
-offset_right = 609.0
-offset_bottom = 477.0
+[node name="MaxFPS_VBox" type="VBoxContainer" parent="Video Settings" unique_id=1079770364]
+layout_mode = 2
 
-[node name="SFXVolume" type="HSlider" parent="." unique_id=1069654554]
-layout_mode = 0
-offset_left = 200.0
-offset_top = 506.0
-offset_right = 613.0
-offset_bottom = 522.0
+[node name="MaxFPS_Label" type="Label" parent="Video Settings/MaxFPS_VBox" unique_id=690315972]
+layout_mode = 2
+text = "Max FPS"
 
-[node name="MusicVolume" type="HSlider" parent="." unique_id=1789276055]
-layout_mode = 0
-offset_left = 246.0
-offset_top = 549.0
-offset_right = 659.0
-offset_bottom = 565.0
+[node name="HBoxContainer" type="HBoxContainer" parent="Video Settings/MaxFPS_VBox" unique_id=537184526]
+layout_mode = 2
+theme_override_constants/separation = 16
 
-[connection signal="pressed" from="AspectRatioOptions/Radio_16_9" to="." method="_on_radio_16_9_pressed"]
-[connection signal="pressed" from="AspectRatioOptions/Radio_16_10" to="." method="_on_radio_16_10_pressed"]
-[connection signal="pressed" from="AspectRatioOptions/Radio_21_9" to="." method="_on_radio_21_9_pressed"]
-[connection signal="item_selected" from="ResolutionOption" to="." method="_on_resolution_option_item_selected"]
-[connection signal="item_selected" from="DisplayOption" to="." method="_on_display_option_item_selected"]
+[node name="FPS_15_Radio" type="CheckBox" parent="Video Settings/MaxFPS_VBox/HBoxContainer" unique_id=1832340043]
+layout_mode = 2
+button_group = SubResource("ButtonGroup_knxsi")
+text = "15"
+
+[node name="FPS_30_Radio" type="CheckBox" parent="Video Settings/MaxFPS_VBox/HBoxContainer" unique_id=1417099234]
+layout_mode = 2
+button_group = SubResource("ButtonGroup_knxsi")
+text = "30"
+
+[node name="FPS_60_Radio" type="CheckBox" parent="Video Settings/MaxFPS_VBox/HBoxContainer" unique_id=1380106497]
+layout_mode = 2
+button_pressed = true
+button_group = SubResource("ButtonGroup_knxsi")
+text = "60"
+
+[node name="FPS_120_Radio" type="CheckBox" parent="Video Settings/MaxFPS_VBox/HBoxContainer" unique_id=701200124]
+layout_mode = 2
+button_group = SubResource("ButtonGroup_knxsi")
+text = "120"
+
+[node name="FPS_240_Radio" type="CheckBox" parent="Video Settings/MaxFPS_VBox/HBoxContainer" unique_id=756223377]
+layout_mode = 2
+button_group = SubResource("ButtonGroup_knxsi")
+text = "240"
+
+[node name="Control" type="Control" parent="." unique_id=2145792853]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -40.0
+offset_top = -40.0
+grow_horizontal = 0
+grow_vertical = 0
+
+[node name="Master_Label" type="Label" parent="Control" unique_id=1965789315]
+layout_mode = 1
+offset_left = -573.0
+offset_top = -201.0
+offset_right = -518.0
+offset_bottom = -178.0
+text = "Master"
+
+[node name="MasterVolume_Slider" type="HSlider" parent="Control" unique_id=157129071]
+layout_mode = 1
+offset_left = -503.0
+offset_top = -194.0
+offset_right = -90.0
+offset_bottom = -178.0
+
+[node name="SFX_Label" type="Label" parent="Control" unique_id=2015286877]
+layout_mode = 1
+offset_left = -627.0
+offset_top = -129.0
+offset_right = -508.0
+offset_bottom = -106.0
+text = "Sound effects"
+
+[node name="SFXVolume_Slider" type="HSlider" parent="Control" unique_id=1069654554]
+layout_mode = 0
+offset_left = -497.0
+offset_top = -123.0
+offset_right = -84.0
+offset_bottom = -107.0
+
+[node name="Music_Label" type="Label" parent="Control" unique_id=2070076652]
+layout_mode = 1
+offset_left = -527.0
+offset_top = -86.0
+offset_right = -472.0
+offset_bottom = -63.0
+text = "Music"
+
+[node name="MusicVolume_Slider" type="HSlider" parent="Control" unique_id=1789276055]
+layout_mode = 0
+offset_left = -451.0
+offset_top = -80.0
+offset_right = -38.0
+offset_bottom = -64.0
+
+[node name="Icon2" type="Sprite2D" parent="." unique_id=1325994580]
+position = Vector2(705.5, 258.00003)
+scale = Vector2(1.9453125, 1.9453125)
+texture = ExtResource("2_knxsi")
+
+[node name="Icon" type="Sprite2D" parent="." unique_id=1790930194]
+position = Vector2(709.49994, 127)
+texture = ExtResource("2_knxsi")
+
+[node name="ApplyButton" type="Button" parent="." unique_id=1819865875]
+layout_mode = 1
+offset_left = 16.0
+offset_top = 14.0
+offset_right = 136.0
+offset_bottom = 45.0
+text = "Apply changes"
+
+[connection signal="pressed" from="Video Settings/AspectRatio_VBox/AspectRatio_HBox/16_9_Radio" to="." method="_on_16_9_radio_pressed"]
+[connection signal="pressed" from="Video Settings/AspectRatio_VBox/AspectRatio_HBox/16_10_Radio" to="." method="_on_16_10_radio_pressed"]
+[connection signal="pressed" from="Video Settings/AspectRatio_VBox/AspectRatio_HBox/21_9_Radio" to="." method="_on_21_9_radio_pressed"]
+[connection signal="pressed" from="Video Settings/MaxFPS_VBox/HBoxContainer/FPS_15_Radio" to="." method="_on_fps_15_radio_pressed"]
+[connection signal="pressed" from="Video Settings/MaxFPS_VBox/HBoxContainer/FPS_30_Radio" to="." method="_on_fps_30_radio_pressed"]
+[connection signal="pressed" from="Video Settings/MaxFPS_VBox/HBoxContainer/FPS_60_Radio" to="." method="_on_fps_60_radio_pressed"]
+[connection signal="pressed" from="Video Settings/MaxFPS_VBox/HBoxContainer/FPS_120_Radio" to="." method="_on_fps_120_radio_pressed"]
+[connection signal="pressed" from="Video Settings/MaxFPS_VBox/HBoxContainer/FPS_240_Radio" to="." method="_on_fps_240_radio_pressed"]
+[connection signal="pressed" from="ApplyButton" to="." method="_on_apply_button_pressed"]

@@ -12,14 +12,18 @@ config_version=5
 
 config/name="Game Template for Godot"
 config/features=PackedStringArray("4.6", "Mobile")
+run/max_fps=120
 config/icon="res://icon.svg"
 
 [display]
 
 window/size/viewport_width=1920
 window/size/viewport_height=1080
-window/stretch/mode="canvas_items"
-window/stretch/aspect="keep_width"
+window/size/maximize_disabled=true
+window/size/window_width_override=1280
+window/size/window_height_override=720
+window/stretch/mode="viewport"
+window/stretch/aspect="expand"
 
 [physics]
 
