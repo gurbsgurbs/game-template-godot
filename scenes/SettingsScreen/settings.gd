@@ -13,7 +13,6 @@ const PROJECT_RESOLUTION: Vector2i = Vector2i(1920,1080)
 
 const SCREEN_RESOLUTIONS: Dictionary = {
 	"16_by_9": {
-		"320x180": Vector2i(320,180),
 		"640x360": Vector2i(640,360),
 		"1280x720": Vector2i(1280,720),
 		"1920x1080": Vector2i(1920,1080),
@@ -112,10 +111,9 @@ func _populate_resolution_options(ratio: String) -> void:
 
 
 func _apply_fullscreen_settings(resolution: Vector2i) -> void:
-	DisplayServer.window_set_size(resolution)
+	get_viewport().size = resolution
 	get_tree().root.content_scale_aspect = Window.CONTENT_SCALE_ASPECT_KEEP
 	DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
-	# TODO: Settings in fullscreen were not working at all...
 
 
 func _apply_windowed_settings(resolution: Vector2i) -> void:
