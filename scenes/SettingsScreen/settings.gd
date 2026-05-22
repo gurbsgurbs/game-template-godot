@@ -36,11 +36,15 @@ var resolution_ratio: String = "16_by_9"
 var max_FPS: int = 60
 
 
-@onready var icon_2: Sprite2D = $Icon2
-@onready var icon: Sprite2D = $Icon
+@onready var icon_2: Sprite2D = %Icon2
+@onready var icon: Sprite2D = %Icon
 
 func _ready() -> void:
+	#TODO: Create current settings from saved settings (e.g. resolution, volumes, etc)
+	
 	_populate_resolution_options("16_by_9")
+	
+	
 	
 func _process(delta: float) -> void:
 	icon.rotation_degrees += 30 * delta

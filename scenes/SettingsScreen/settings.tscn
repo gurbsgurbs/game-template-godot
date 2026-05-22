@@ -1,7 +1,9 @@
 [gd_scene format=3 uid="uid://dai0tljd17vj1"]
 
 [ext_resource type="Script" uid="uid://ckopoc6njolww" path="res://scenes/SettingsScreen/settings.gd" id="1_yemuq"]
+[ext_resource type="PackedScene" uid="uid://dya5pycmmje6b" path="res://scenes/SettingsScreen/VolumeSlider/volume_slider.tscn" id="2_7vg2g"]
 [ext_resource type="Texture2D" uid="uid://bnxrb4qxgm6u0" path="res://icon.svg" id="2_knxsi"]
+[ext_resource type="AudioStream" uid="uid://3jde1wdxeeuo" path="res://Assets/Test/music.wav" id="4_hmvff"]
 
 [sub_resource type="ButtonGroup" id="ButtonGroup_yemuq"]
 
@@ -15,11 +17,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_yemuq")
-
-[node name="Icon2" type="Sprite2D" parent="." unique_id=1325994580]
-position = Vector2(285.50003, 660)
-scale = Vector2(1.9453125, 1.9453125)
-texture = ExtResource("2_knxsi")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=78907476]
 layout_mode = 0
@@ -144,100 +141,45 @@ theme_override_constants/separation = 24
 layout_mode = 2
 text = "Audio Settings"
 
-[node name="Volume_Master" type="VBoxContainer" parent="VBoxContainer/HBoxContainer/Audio Settings" unique_id=1917412715]
+[node name="Master_Slider" parent="VBoxContainer/HBoxContainer/Audio Settings" unique_id=1681206157 instance=ExtResource("2_7vg2g")]
 layout_mode = 2
-size_flags_horizontal = 0
-size_flags_vertical = 8
+slider_name = "Master Volume"
+bus_name = "Master"
 
-[node name="Master_Label" type="Label" parent="VBoxContainer/HBoxContainer/Audio Settings/Volume_Master" unique_id=1965789315]
+[node name="SFX_Slider" parent="VBoxContainer/HBoxContainer/Audio Settings" unique_id=1166500058 instance=ExtResource("2_7vg2g")]
 layout_mode = 2
-size_flags_horizontal = 0
-size_flags_vertical = 0
-text = "Master"
+slider_name = "Sound Effects"
+bus_name = "SoundEffects"
 
-[node name="VolumeControls" type="HBoxContainer" parent="VBoxContainer/HBoxContainer/Audio Settings/Volume_Master" unique_id=1888902163]
+[node name="Music_Slider" parent="VBoxContainer/HBoxContainer/Audio Settings" unique_id=1328698655 instance=ExtResource("2_7vg2g")]
 layout_mode = 2
-size_flags_horizontal = 0
-size_flags_vertical = 0
-
-[node name="MasterVol_Slider" type="HSlider" parent="VBoxContainer/HBoxContainer/Audio Settings/Volume_Master/VolumeControls" unique_id=157129071]
-custom_minimum_size = Vector2(200, 0)
-layout_mode = 2
-size_flags_horizontal = 8
-size_flags_vertical = 4
-max_value = 1.0
-step = 0.05
-
-[node name="MasterVol_Value" type="Label" parent="VBoxContainer/HBoxContainer/Audio Settings/Volume_Master/VolumeControls" unique_id=1763658141]
-layout_mode = 2
-size_flags_horizontal = 8
-text = "100"
-
-[node name="Volume_SFX" type="VBoxContainer" parent="VBoxContainer/HBoxContainer/Audio Settings" unique_id=543135364]
-layout_mode = 2
-size_flags_horizontal = 0
-size_flags_vertical = 8
-
-[node name="SFX_Label" type="Label" parent="VBoxContainer/HBoxContainer/Audio Settings/Volume_SFX" unique_id=1607640836]
-layout_mode = 2
-size_flags_horizontal = 0
-size_flags_vertical = 0
-text = "Sound Effects"
-
-[node name="VolumeControls" type="HBoxContainer" parent="VBoxContainer/HBoxContainer/Audio Settings/Volume_SFX" unique_id=220672582]
-layout_mode = 2
-size_flags_horizontal = 0
-size_flags_vertical = 0
-
-[node name="SFXVol_Slider" type="HSlider" parent="VBoxContainer/HBoxContainer/Audio Settings/Volume_SFX/VolumeControls" unique_id=431788162]
-custom_minimum_size = Vector2(200, 0)
-layout_mode = 2
-size_flags_horizontal = 8
-size_flags_vertical = 4
-max_value = 1.0
-step = 0.05
-
-[node name="SFXVol_Value" type="Label" parent="VBoxContainer/HBoxContainer/Audio Settings/Volume_SFX/VolumeControls" unique_id=1172348494]
-layout_mode = 2
-size_flags_horizontal = 8
-text = "100"
-
-[node name="Volume_Music" type="VBoxContainer" parent="VBoxContainer/HBoxContainer/Audio Settings" unique_id=1899944053]
-layout_mode = 2
-size_flags_horizontal = 0
-size_flags_vertical = 8
-
-[node name="Music_Label" type="Label" parent="VBoxContainer/HBoxContainer/Audio Settings/Volume_Music" unique_id=729503777]
-layout_mode = 2
-size_flags_horizontal = 0
-size_flags_vertical = 0
-text = "Music"
-
-[node name="VolumeControls" type="HBoxContainer" parent="VBoxContainer/HBoxContainer/Audio Settings/Volume_Music" unique_id=24111431]
-layout_mode = 2
-size_flags_horizontal = 0
-size_flags_vertical = 0
-
-[node name="MusicVol_Slider" type="HSlider" parent="VBoxContainer/HBoxContainer/Audio Settings/Volume_Music/VolumeControls" unique_id=458957559]
-custom_minimum_size = Vector2(200, 0)
-layout_mode = 2
-size_flags_horizontal = 8
-size_flags_vertical = 4
-max_value = 1.0
-step = 0.05
-
-[node name="MusicVol_Value" type="Label" parent="VBoxContainer/HBoxContainer/Audio Settings/Volume_Music/VolumeControls" unique_id=1292117952]
-layout_mode = 2
-size_flags_horizontal = 8
-text = "100"
+slider_name = "Music"
+bus_name = "Music"
 
 [node name="ApplyButton" type="Button" parent="VBoxContainer" unique_id=1819865875]
 layout_mode = 2
 text = "Apply changes"
 
-[node name="Icon" type="Sprite2D" parent="." unique_id=1790930194]
+[node name="TestThings" type="Control" parent="." unique_id=812644837]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Icon2" type="Sprite2D" parent="TestThings" unique_id=1325994580]
+unique_name_in_owner = true
+position = Vector2(285.50003, 660)
+scale = Vector2(1.9453125, 1.9453125)
+texture = ExtResource("2_knxsi")
+
+[node name="Icon" type="Sprite2D" parent="TestThings" unique_id=1790930194]
+unique_name_in_owner = true
 position = Vector2(289.49994, 529)
 texture = ExtResource("2_knxsi")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="TestThings" unique_id=950103707]
+stream = ExtResource("4_hmvff")
+autoplay = true
+bus = &"Music"
 
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/Video Settings/AspectRatio_VBox/AspectRatio_HBox/16_9_Radio" to="." method="_on_16_9_radio_pressed"]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/Video Settings/AspectRatio_VBox/AspectRatio_HBox/16_10_Radio" to="." method="_on_16_10_radio_pressed"]
