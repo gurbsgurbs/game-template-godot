@@ -1,7 +1,8 @@
 [gd_scene format=3 uid="uid://dai0tljd17vj1"]
 
-[ext_resource type="Script" uid="uid://ckopoc6njolww" path="res://scenes/SettingsScreen/settings.gd" id="1_yemuq"]
-[ext_resource type="PackedScene" uid="uid://dya5pycmmje6b" path="res://scenes/SettingsScreen/VolumeSlider/volume_slider.tscn" id="2_7vg2g"]
+[ext_resource type="Script" uid="uid://ckopoc6njolww" path="res://scenes/Settings/settings.gd" id="1_yemuq"]
+[ext_resource type="PackedScene" uid="uid://bommxp8kbcha2" path="res://scenes/Settings/MuteToggle/mute_toggle.tscn" id="2_1q6jj"]
+[ext_resource type="PackedScene" uid="uid://dya5pycmmje6b" path="res://scenes/Settings/VolumeSlider/volume_slider.tscn" id="2_7vg2g"]
 [ext_resource type="Texture2D" uid="uid://bnxrb4qxgm6u0" path="res://icon.svg" id="2_knxsi"]
 [ext_resource type="AudioStream" uid="uid://3jde1wdxeeuo" path="res://Assets/Test/music.wav" id="4_hmvff"]
 
@@ -38,6 +39,13 @@ theme_override_constants/separation = 24
 layout_mode = 2
 text = "Video Settings"
 
+[node name="Fullscreen_Toggle" type="CheckButton" parent="VBoxContainer/HBoxContainer/Video Settings" unique_id=1096554328]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_constants/h_separation = 16
+text = "Fullscreen"
+
 [node name="AspectRatio_VBox" type="VBoxContainer" parent="VBoxContainer/HBoxContainer/Video Settings" unique_id=1163222064]
 layout_mode = 2
 
@@ -73,11 +81,11 @@ text = "21:9
 layout_mode = 2
 theme_override_constants/separation = 16
 
-[node name="Resolution_Label" type="Label" parent="VBoxContainer/HBoxContainer/Video Settings/Resolution_HBox" unique_id=1268373054]
+[node name="WindowSize_Label" type="Label" parent="VBoxContainer/HBoxContainer/Video Settings/Resolution_HBox" unique_id=1268373054]
 layout_mode = 2
-text = "Resolution"
+text = "Window size"
 
-[node name="Resolution_Option" type="OptionButton" parent="VBoxContainer/HBoxContainer/Video Settings/Resolution_HBox" unique_id=672244200]
+[node name="WindowSize_Option" type="OptionButton" parent="VBoxContainer/HBoxContainer/Video Settings/Resolution_HBox" unique_id=672244200]
 unique_name_in_owner = true
 layout_mode = 2
 selected = 0
@@ -88,13 +96,6 @@ popup/item_1/text = "1280x720"
 popup/item_1/id = 1
 popup/item_2/text = "1440x900"
 popup/item_2/id = 2
-
-[node name="Fullscreen_Toggle" type="CheckButton" parent="VBoxContainer/HBoxContainer/Video Settings" unique_id=1096554328]
-unique_name_in_owner = true
-layout_mode = 2
-size_flags_horizontal = 0
-theme_override_constants/h_separation = 16
-text = "Fullscreen"
 
 [node name="MaxFPS_VBox" type="VBoxContainer" parent="VBoxContainer/HBoxContainer/Video Settings" unique_id=1079770364]
 layout_mode = 2
@@ -141,17 +142,24 @@ theme_override_constants/separation = 24
 layout_mode = 2
 text = "Audio Settings"
 
+[node name="Mute_Toggle" parent="VBoxContainer/HBoxContainer/Audio Settings" unique_id=1255364813 instance=ExtResource("2_1q6jj")]
+unique_name_in_owner = true
+layout_mode = 2
+
 [node name="Master_Slider" parent="VBoxContainer/HBoxContainer/Audio Settings" unique_id=1681206157 instance=ExtResource("2_7vg2g")]
+unique_name_in_owner = true
 layout_mode = 2
 slider_name = "Master Volume"
 bus_name = "Master"
 
 [node name="SFX_Slider" parent="VBoxContainer/HBoxContainer/Audio Settings" unique_id=1166500058 instance=ExtResource("2_7vg2g")]
+unique_name_in_owner = true
 layout_mode = 2
 slider_name = "Sound Effects"
 bus_name = "SoundEffects"
 
 [node name="Music_Slider" parent="VBoxContainer/HBoxContainer/Audio Settings" unique_id=1328698655 instance=ExtResource("2_7vg2g")]
+unique_name_in_owner = true
 layout_mode = 2
 slider_name = "Music"
 bus_name = "Music"
@@ -167,13 +175,13 @@ offset_bottom = 40.0
 
 [node name="Icon2" type="Sprite2D" parent="TestThings" unique_id=1325994580]
 unique_name_in_owner = true
-position = Vector2(285.50003, 660)
+position = Vector2(383.5, 712)
 scale = Vector2(1.9453125, 1.9453125)
 texture = ExtResource("2_knxsi")
 
 [node name="Icon" type="Sprite2D" parent="TestThings" unique_id=1790930194]
 unique_name_in_owner = true
-position = Vector2(289.49994, 529)
+position = Vector2(387.4999, 581)
 texture = ExtResource("2_knxsi")
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="TestThings" unique_id=950103707]
@@ -181,6 +189,7 @@ stream = ExtResource("4_hmvff")
 autoplay = true
 bus = &"Music"
 
+[connection signal="toggled" from="VBoxContainer/HBoxContainer/Video Settings/Fullscreen_Toggle" to="." method="_on_fullscreen_toggle_toggled"]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/Video Settings/AspectRatio_VBox/AspectRatio_HBox/16_9_Radio" to="." method="_on_16_9_radio_pressed"]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/Video Settings/AspectRatio_VBox/AspectRatio_HBox/16_10_Radio" to="." method="_on_16_10_radio_pressed"]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/Video Settings/AspectRatio_VBox/AspectRatio_HBox/21_9_Radio" to="." method="_on_21_9_radio_pressed"]

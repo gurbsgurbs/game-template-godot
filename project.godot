@@ -15,12 +15,21 @@ config/features=PackedStringArray("4.6", "Mobile")
 run/max_fps=120
 config/icon="res://icon.svg"
 
+[audio]
+
+buses/default_bus_layout="uid://dqwfklxm5x16j"
+
+[autoload]
+
+SettingsManager="*uid://b62and67kk2mu"
+AudioManager="*uid://cxp4ay5mldwxj"
+
 [display]
 
 window/size/viewport_width=1920
 window/size/viewport_height=1080
 window/size/maximize_disabled=true
-window/stretch/mode="viewport"
+window/stretch/mode="canvas_items"
 window/stretch/aspect="expand"
 
 [physics]

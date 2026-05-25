@@ -1,0 +1,27 @@
+[gd_scene format=3 uid="uid://bommxp8kbcha2"]
+
+[ext_resource type="Script" uid="uid://bqymk1nf6ddgl" path="res://scenes/Settings/MuteToggle/mute_toggle.gd" id="1_khtc8"]
+
+[sub_resource type="Gradient" id="Gradient_7vg2g"]
+colors = PackedColorArray(0, 0.40784314, 0, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_hmvff"]
+gradient = SubResource("Gradient_7vg2g")
+width = 32
+height = 32
+
+[sub_resource type="Gradient" id="Gradient_24evy"]
+colors = PackedColorArray(0.45490196, 0, 0, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_bteqm"]
+gradient = SubResource("Gradient_24evy")
+width = 32
+height = 32
+
+[node name="Mute_Toggle" type="TextureButton" unique_id=1255364813]
+toggle_mode = true
+texture_normal = SubResource("GradientTexture2D_hmvff")
+texture_pressed = SubResource("GradientTexture2D_bteqm")
+script = ExtResource("1_khtc8")
+
+[connection signal="toggled" from="." to="." method="_on_toggled"]
