@@ -39,15 +39,10 @@ var fade_tween: Tween
 @onready var audio_player: AudioStreamPlayer = %AudioPlayer
 
 
-
-
-
 func _ready() -> void:
 	music_player_a.volume_linear = 0.0
 	music_player_b.volume_linear = 0.0
 	music_active_player = music_player_a
-
-
 
 
 func play_music(track: Music, fade_duration: float = DEFAULT_FADE_DURATION) -> void:
@@ -62,7 +57,6 @@ func play_music(track: Music, fade_duration: float = DEFAULT_FADE_DURATION) -> v
 	
 	if fade_duration <= 0.0:
 		_play_music_instantly(music_path)
-		print("music playing")
 	else:
 		_play_music_crossfade(music_path, fade_duration)
 	
@@ -121,11 +115,10 @@ func _get_bus_volume(bus_name: String) -> float:
 
 func _play_music_instantly(music_path: String) -> void:
 	
-	if fade_tween != null and fade_tween.valid():
-		fade_tween.kill()
-		fade_tween = null
-	
+	if fade_tween != null and fade_tween.is_valid():
+		_kill_fade_tween()
 	_music_stop_all_players()
+	
 	music_active_player = music_player_a
 	music_player_a.volume_linear = VOLUME_FULL
 	music_player_a.stream = load(music_path)
@@ -135,6 +128,11 @@ func _play_music_instantly(music_path: String) -> void:
 func _play_music_crossfade(music_path: String, fade_duration: float) -> void:
 	var fade_in_player: AudioStreamPlayer = _get_music_inactive_player()
 	var fade_out_player: AudioStreamPlayer = music_active_player
+	
+	# If a crossfade is already running, resort to a "flush and play from scratch"
+	if fade_tween != null and fade_tween.is_valid():
+		_music_resolve_crossfade(music_path, fade_duration)
+		return
 	
 	fade_in_player.stream = load(music_path)
 	fade_in_player.volume_linear = VOLUME_SILENT
@@ -149,12 +147,23 @@ func _play_music_crossfade(music_path: String, fade_duration: float) -> void:
 		func():
 			fade_out_player.stop()
 			fade_out_player.volume_linear = VOLUME_SILENT
-			fade_tween = null
+			_kill_fade_tween()
 	)
 
 
-func _music_resolve_crossfade(music_path: String) -> void:
-	pass
+func _music_resolve_crossfade(music_path: String, fade_duration: float) -> void:
+	_kill_fade_tween()
+	
+	fade_tween = create_tween()
+	fade_tween.tween_property(music_player_a, "volume_linear", VOLUME_SILENT, DEFAULT_FADE_DURATION / 4)
+	fade_tween.parallel().tween_property(music_player_b, "volume_linear", VOLUME_SILENT, DEFAULT_FADE_DURATION / 4)
+	fade_tween.tween_callback(
+		func():
+			_music_stop_all_players()
+			_kill_fade_tween()
+			_play_music_crossfade(music_path, fade_duration)
+	)
+	
 
 
 func _get_music_inactive_player() -> AudioStreamPlayer:
@@ -169,5 +178,10 @@ func _music_stop_all_players() -> void:
 	music_player_a.volume_linear = VOLUME_SILENT
 	music_player_b.stop()
 	music_player_b.volume_linear = VOLUME_SILENT
+
+
+func _kill_fade_tween() -> void:
+	fade_tween.kill()
+	fade_tween = null
 
 #endregion
