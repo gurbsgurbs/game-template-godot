@@ -120,6 +120,11 @@ func _get_bus_volume(bus_name: String) -> float:
 
 
 func _play_music_instantly(music_path: String) -> void:
+	
+	if fade_tween != null and fade_tween.valid():
+		fade_tween.kill()
+		fade_tween = null
+	
 	_music_stop_all_players()
 	music_active_player = music_player_a
 	music_player_a.volume_linear = VOLUME_FULL
@@ -128,13 +133,29 @@ func _play_music_instantly(music_path: String) -> void:
 
 
 func _play_music_crossfade(music_path: String, fade_duration: float) -> void:
-	var fade_in: AudioStreamPlayer = _get_music_inactive_player()
-	var fade_out: AudioStreamPlayer = music_active_player
+	var fade_in_player: AudioStreamPlayer = _get_music_inactive_player()
+	var fade_out_player: AudioStreamPlayer = music_active_player
 	
-	fade_in.stream = load(music_path)
-	fade_in.volume_linear = VOLUME_SILENT
-	fade_in.play()
+	fade_in_player.stream = load(music_path)
+	fade_in_player.volume_linear = VOLUME_SILENT
+	fade_in_player.play()
 	
+	music_active_player = fade_in_player
+	
+	fade_tween = create_tween()
+	fade_tween.tween_property(fade_out_player, "volume_linear", VOLUME_SILENT, fade_duration).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN)
+	fade_tween.parallel().tween_property(fade_in_player, "volume_linear", VOLUME_FULL, fade_duration).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN)
+	fade_tween.tween_callback(
+		func():
+			fade_out_player.stop()
+			fade_out_player.volume_linear = VOLUME_SILENT
+			fade_tween = null
+	)
+
+
+func _music_resolve_crossfade(music_path: String) -> void:
+	pass
+
 
 func _get_music_inactive_player() -> AudioStreamPlayer:
 	if music_active_player == music_player_a:
