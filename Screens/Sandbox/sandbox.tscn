@@ -1,0 +1,46 @@
+[gd_scene format=3 uid="uid://wsdktf4n6gmf"]
+
+[ext_resource type="Script" uid="uid://duv7xvh20vt13" path="res://Screens/Sandbox/sandbox.gd" id="1_ua3rj"]
+
+[node name="Sandbox" type="Control" unique_id=171300956]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ua3rj")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=1172404711]
+layout_mode = 0
+offset_left = 88.0
+offset_top = 94.0
+offset_right = 371.0
+offset_bottom = 134.0
+
+[node name="Button" type="Button" parent="HBoxContainer" unique_id=607025143]
+layout_mode = 2
+text = "Play music 1"
+
+[node name="Button2" type="Button" parent="HBoxContainer" unique_id=779504122]
+layout_mode = 2
+text = "Play music 2"
+
+[node name="Button3" type="Button" parent="HBoxContainer" unique_id=209610949]
+layout_mode = 2
+text = "Play sfx"
+
+[node name="Button4" type="Button" parent="HBoxContainer" unique_id=966522504]
+layout_mode = 2
+text = "Stop all music! NOW!"
+
+[node name="ToMainMenuButton" type="Button" parent="." unique_id=663859924]
+layout_mode = 0
+offset_right = 8.0
+offset_bottom = 8.0
+text = "MAIN MENU"
+
+[connection signal="pressed" from="HBoxContainer/Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="HBoxContainer/Button2" to="." method="_on_button_2_pressed"]
+[connection signal="pressed" from="HBoxContainer/Button4" to="." method="_on_button_4_pressed"]
+[connection signal="pressed" from="ToMainMenuButton" to="." method="_on_to_main_menu_button_pressed"]

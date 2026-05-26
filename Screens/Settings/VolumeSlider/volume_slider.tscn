@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://dya5pycmmje6b"]
 
-[ext_resource type="Script" uid="uid://bs5xlb7miy82d" path="res://scenes/Settings/VolumeSlider/volume_slider.gd" id="1_1fmoe"]
+[ext_resource type="Script" uid="uid://bs5xlb7miy82d" path="res://Screens/Settings/VolumeSlider/volume_slider.gd" id="1_1fmoe"]
 
 [node name="Volume_Slider" type="VBoxContainer" unique_id=1681206157]
 size_flags_horizontal = 0

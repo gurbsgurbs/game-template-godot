@@ -1,0 +1,31 @@
+[gd_scene format=3 uid="uid://bfxa0dikejpbe"]
+
+[ext_resource type="Script" uid="uid://cpir1ixlnw6bm" path="res://Screens/MainMenu/main_menu.gd" id="1_uqdog"]
+
+[node name="MainMenu" type="Control" unique_id=2074011503]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_uqdog")
+
+[node name="DEBUG_BUTTON" type="Button" parent="." unique_id=626610397]
+layout_mode = 0
+offset_left = 59.0
+offset_top = 52.0
+offset_right = 194.0
+offset_bottom = 83.0
+text = "SETTINGS debug"
+
+[node name="DEBUG_BUTTON2" type="Button" parent="." unique_id=1598818212]
+layout_mode = 0
+offset_left = 105.0
+offset_top = 110.0
+offset_right = 240.0
+offset_bottom = 141.0
+text = "To Sandbox"
+
+[connection signal="pressed" from="DEBUG_BUTTON" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="DEBUG_BUTTON2" to="." method="_on_debug_button_2_pressed"]

@@ -1,10 +1,9 @@
 [gd_scene format=3 uid="uid://dai0tljd17vj1"]
 
-[ext_resource type="Script" uid="uid://ckopoc6njolww" path="res://scenes/Settings/settings.gd" id="1_yemuq"]
-[ext_resource type="PackedScene" uid="uid://bommxp8kbcha2" path="res://scenes/Settings/MuteToggle/mute_toggle.tscn" id="2_1q6jj"]
-[ext_resource type="PackedScene" uid="uid://dya5pycmmje6b" path="res://scenes/Settings/VolumeSlider/volume_slider.tscn" id="2_7vg2g"]
-[ext_resource type="Texture2D" uid="uid://bnxrb4qxgm6u0" path="res://icon.svg" id="2_knxsi"]
-[ext_resource type="AudioStream" uid="uid://3jde1wdxeeuo" path="res://Assets/Test/music.wav" id="4_hmvff"]
+[ext_resource type="Script" uid="uid://ckopoc6njolww" path="res://Screens/Settings/settings.gd" id="1_nhyng"]
+[ext_resource type="PackedScene" uid="uid://bommxp8kbcha2" path="res://Screens/Settings/MuteToggle/mute_toggle.tscn" id="2_377lh"]
+[ext_resource type="PackedScene" uid="uid://dya5pycmmje6b" path="res://Screens/Settings/VolumeSlider/volume_slider.tscn" id="3_mlqq5"]
+[ext_resource type="Texture2D" uid="uid://bnxrb4qxgm6u0" path="res://icon.svg" id="4_s8lup"]
 
 [sub_resource type="ButtonGroup" id="ButtonGroup_yemuq"]
 
@@ -17,7 +16,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_yemuq")
+script = ExtResource("1_nhyng")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=78907476]
 layout_mode = 0
@@ -88,14 +87,6 @@ text = "Window size"
 [node name="WindowSize_Option" type="OptionButton" parent="VBoxContainer/HBoxContainer/Video Settings/Resolution_HBox" unique_id=672244200]
 unique_name_in_owner = true
 layout_mode = 2
-selected = 0
-item_count = 3
-popup/item_0/text = "1920x1080"
-popup/item_0/id = 0
-popup/item_1/text = "1280x720"
-popup/item_1/id = 1
-popup/item_2/text = "1440x900"
-popup/item_2/id = 2
 
 [node name="MaxFPS_VBox" type="VBoxContainer" parent="VBoxContainer/HBoxContainer/Video Settings" unique_id=1079770364]
 layout_mode = 2
@@ -109,27 +100,32 @@ layout_mode = 2
 theme_override_constants/separation = 16
 
 [node name="FPS_15_Radio" type="CheckBox" parent="VBoxContainer/HBoxContainer/Video Settings/MaxFPS_VBox/HBoxContainer" unique_id=1832340043]
+unique_name_in_owner = true
 layout_mode = 2
 button_group = SubResource("ButtonGroup_knxsi")
 text = "15"
 
 [node name="FPS_30_Radio" type="CheckBox" parent="VBoxContainer/HBoxContainer/Video Settings/MaxFPS_VBox/HBoxContainer" unique_id=1417099234]
+unique_name_in_owner = true
 layout_mode = 2
 button_group = SubResource("ButtonGroup_knxsi")
 text = "30"
 
 [node name="FPS_60_Radio" type="CheckBox" parent="VBoxContainer/HBoxContainer/Video Settings/MaxFPS_VBox/HBoxContainer" unique_id=1380106497]
+unique_name_in_owner = true
 layout_mode = 2
 button_pressed = true
 button_group = SubResource("ButtonGroup_knxsi")
 text = "60"
 
 [node name="FPS_120_Radio" type="CheckBox" parent="VBoxContainer/HBoxContainer/Video Settings/MaxFPS_VBox/HBoxContainer" unique_id=701200124]
+unique_name_in_owner = true
 layout_mode = 2
 button_group = SubResource("ButtonGroup_knxsi")
 text = "120"
 
 [node name="FPS_240_Radio" type="CheckBox" parent="VBoxContainer/HBoxContainer/Video Settings/MaxFPS_VBox/HBoxContainer" unique_id=756223377]
+unique_name_in_owner = true
 layout_mode = 2
 button_group = SubResource("ButtonGroup_knxsi")
 text = "240"
@@ -142,23 +138,23 @@ theme_override_constants/separation = 24
 layout_mode = 2
 text = "Audio Settings"
 
-[node name="Mute_Toggle" parent="VBoxContainer/HBoxContainer/Audio Settings" unique_id=1255364813 instance=ExtResource("2_1q6jj")]
+[node name="Mute_Toggle" parent="VBoxContainer/HBoxContainer/Audio Settings" unique_id=1255364813 instance=ExtResource("2_377lh")]
 unique_name_in_owner = true
 layout_mode = 2
 
-[node name="Master_Slider" parent="VBoxContainer/HBoxContainer/Audio Settings" unique_id=1681206157 instance=ExtResource("2_7vg2g")]
+[node name="Master_Slider" parent="VBoxContainer/HBoxContainer/Audio Settings" unique_id=1681206157 instance=ExtResource("3_mlqq5")]
 unique_name_in_owner = true
 layout_mode = 2
 slider_name = "Master Volume"
 bus_name = "Master"
 
-[node name="SFX_Slider" parent="VBoxContainer/HBoxContainer/Audio Settings" unique_id=1166500058 instance=ExtResource("2_7vg2g")]
+[node name="SFX_Slider" parent="VBoxContainer/HBoxContainer/Audio Settings" unique_id=1166500058 instance=ExtResource("3_mlqq5")]
 unique_name_in_owner = true
 layout_mode = 2
 slider_name = "Sound Effects"
 bus_name = "SoundEffects"
 
-[node name="Music_Slider" parent="VBoxContainer/HBoxContainer/Audio Settings" unique_id=1328698655 instance=ExtResource("2_7vg2g")]
+[node name="Music_Slider" parent="VBoxContainer/HBoxContainer/Audio Settings" unique_id=1328698655 instance=ExtResource("3_mlqq5")]
 unique_name_in_owner = true
 layout_mode = 2
 slider_name = "Music"
@@ -168,6 +164,10 @@ bus_name = "Music"
 layout_mode = 2
 text = "Apply changes"
 
+[node name="ResetButton" type="Button" parent="VBoxContainer" unique_id=956110030]
+layout_mode = 2
+text = "Reset to Default"
+
 [node name="TestThings" type="Control" parent="." unique_id=812644837]
 anchors_preset = 0
 offset_right = 40.0
@@ -175,27 +175,33 @@ offset_bottom = 40.0
 
 [node name="Icon2" type="Sprite2D" parent="TestThings" unique_id=1325994580]
 unique_name_in_owner = true
-position = Vector2(383.5, 712)
+position = Vector2(976.49994, 299.00003)
 scale = Vector2(1.9453125, 1.9453125)
-texture = ExtResource("2_knxsi")
+texture = ExtResource("4_s8lup")
 
 [node name="Icon" type="Sprite2D" parent="TestThings" unique_id=1790930194]
 unique_name_in_owner = true
-position = Vector2(387.4999, 581)
-texture = ExtResource("2_knxsi")
+position = Vector2(980.4999, 168)
+texture = ExtResource("4_s8lup")
 
-[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="TestThings" unique_id=950103707]
-stream = ExtResource("4_hmvff")
-autoplay = true
-bus = &"Music"
+[node name="DEBUG_BUTTON" type="Button" parent="." unique_id=712372418]
+layout_mode = 0
+offset_left = 66.0
+offset_top = 541.0
+offset_right = 201.0
+offset_bottom = 572.0
+text = "MAIN MENU debug"
 
 [connection signal="toggled" from="VBoxContainer/HBoxContainer/Video Settings/Fullscreen_Toggle" to="." method="_on_fullscreen_toggle_toggled"]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/Video Settings/AspectRatio_VBox/AspectRatio_HBox/16_9_Radio" to="." method="_on_16_9_radio_pressed"]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/Video Settings/AspectRatio_VBox/AspectRatio_HBox/16_10_Radio" to="." method="_on_16_10_radio_pressed"]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/Video Settings/AspectRatio_VBox/AspectRatio_HBox/21_9_Radio" to="." method="_on_21_9_radio_pressed"]
+[connection signal="item_selected" from="VBoxContainer/HBoxContainer/Video Settings/Resolution_HBox/WindowSize_Option" to="." method="_on_window_size_option_item_selected"]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/Video Settings/MaxFPS_VBox/HBoxContainer/FPS_15_Radio" to="." method="_on_fps_15_radio_pressed"]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/Video Settings/MaxFPS_VBox/HBoxContainer/FPS_30_Radio" to="." method="_on_fps_30_radio_pressed"]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/Video Settings/MaxFPS_VBox/HBoxContainer/FPS_60_Radio" to="." method="_on_fps_60_radio_pressed"]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/Video Settings/MaxFPS_VBox/HBoxContainer/FPS_120_Radio" to="." method="_on_fps_120_radio_pressed"]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/Video Settings/MaxFPS_VBox/HBoxContainer/FPS_240_Radio" to="." method="_on_fps_240_radio_pressed"]
 [connection signal="pressed" from="VBoxContainer/ApplyButton" to="." method="_on_apply_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/ResetButton" to="." method="_on_apply_button_pressed"]
+[connection signal="pressed" from="DEBUG_BUTTON" to="." method="_on_debug_button_pressed"]
