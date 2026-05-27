@@ -6,29 +6,34 @@ extends Node
 #region MUSIC & SOUND LIBRARIES
 
 enum Music {
+	NONE,
 	THEME_TEST,
 	THEME_2_TEST,
 }
 
-enum SoundEffects {
+enum SoundEffect {
 	UI_BUTTON_CLICK
 }
 
-const  MUSIC_TRACKS: Dictionary[Music, String] = {
+const MUSIC_TRACKS: Dictionary[Music, String] = {
 	Music.THEME_TEST: "res://Assets/Test/music.wav",
 	Music.THEME_2_TEST: "res://Assets/Test/music_2.wav"
 }
 
-const SFX_AUDIOS: Dictionary[SoundEffects, String] = {
-	SoundEffects.UI_BUTTON_CLICK: "res://Assets/Test/sfx.wav",
+
+const SFX_AUDIOS: Dictionary[SoundEffect, AudioStream] = {
+	SoundEffect.UI_BUTTON_CLICK: preload("res://Assets/Test/sfx.wav"),
 }
 
 #endregion
 
+
 const DEFAULT_FADE_DURATION: float = 3.0
+const DEFAULT_PITCH_RANDOM: float = 0.02
 
 const VOLUME_SILENT: float = 0.0
 const VOLUME_FULL: float = 1.0
+
 
 var music_current_track: Music
 var music_active_player: AudioStreamPlayer
@@ -36,14 +41,16 @@ var fade_tween: Tween
 
 @onready var music_player_a: AudioStreamPlayer = %MusicPlayerA
 @onready var music_player_b: AudioStreamPlayer = %MusicPlayerB
-@onready var audio_player: AudioStreamPlayer = %AudioPlayer
 
 
 func _ready() -> void:
+	music_current_track = Music.NONE
 	music_player_a.volume_linear = 0.0
 	music_player_b.volume_linear = 0.0
 	music_active_player = music_player_a
 
+
+#region MUSIC FUNCTIONS
 
 func play_music(track: Music, fade_duration: float = DEFAULT_FADE_DURATION) -> void:
 	
@@ -55,12 +62,15 @@ func play_music(track: Music, fade_duration: float = DEFAULT_FADE_DURATION) -> v
 	
 	var music_path: String = MUSIC_TRACKS[track]
 	
+	# Play immediately or add a fade
 	if fade_duration <= 0.0:
 		_play_music_instantly(music_path)
 	else:
 		_play_music_crossfade(music_path, fade_duration)
 
 
+## Stops the music. [br]
+## Music can be stopped immediately, or with a fade out.
 func stop_music(fade_duration: float = DEFAULT_FADE_DURATION) -> void:
 	# No music playing
 	if music_active_player.playing == false:
@@ -75,6 +85,7 @@ func stop_music(fade_duration: float = DEFAULT_FADE_DURATION) -> void:
 	
 	# Crossfade is happening (fade_duration is ignored)
 	if fade_tween != null and fade_tween.is_valid():
+		music_current_track = Music.NONE
 		_music_resolve_crossfade()
 		return
 	
@@ -88,22 +99,45 @@ func stop_music(fade_duration: float = DEFAULT_FADE_DURATION) -> void:
 	)
 
 
+## Pauses the music.
 func pause_music() -> void:
 	if music_active_player.playing == true:
 		music_active_player.stream_paused = true
 
 
+## Resumes the paused music.
 func resume_music() -> void:
 	if music_active_player.stream_paused == true:
 		music_active_player.stream_paused = false
 
 
+## Returns if there's music playing or not.
 func is_music_playing() -> bool:
 	if music_active_player.playing == true and music_active_player.stream_paused == false:
 		return true
 	else:
 		return false
 
+#endregion
+
+
+#region SFX
+
+# Plays a sound. A random pitch can be added.
+func play_sound(sound: SoundEffect, pitch_random: bool = false, pitch_max_random:float = DEFAULT_PITCH_RANDOM) -> void:
+	var sound_player : AudioStreamPlayer = AudioStreamPlayer.new()
+	add_child(sound_player)
+	sound_player.stream = SFX_AUDIOS[sound]
+	sound_player.bus = "SoundEffects"
+	sound_player.finished.connect(sound_player.queue_free)
+	if pitch_random == true:
+		sound_player.pitch_scale = 1.0 + randf_range(-pitch_max_random, pitch_max_random)
+	else:
+		sound_player.pitch_scale = 1.0
+	sound_player.play()
+
+
+#endregion
 
 
 #region BUS VOLUME FUNCTIONS
@@ -192,6 +226,7 @@ func _play_music_crossfade(music_path: String, fade_duration: float) -> void:
 		func():
 			fade_out_player.stop()
 			fade_out_player.volume_linear = VOLUME_SILENT
+			fade_out_player.stream = null
 			_kill_fade_tween()
 	)
 
@@ -220,10 +255,13 @@ func _get_music_inactive_player() -> AudioStreamPlayer:
 
 
 func _music_stop_all_players() -> void:
+	music_current_track = Music.NONE
 	music_player_a.stop()
 	music_player_a.volume_linear = VOLUME_SILENT
+	music_player_a.stream = null
 	music_player_b.stop()
 	music_player_b.volume_linear = VOLUME_SILENT
+	music_player_b.stream = null
 
 
 func _kill_fade_tween() -> void:

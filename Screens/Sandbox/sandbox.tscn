@@ -48,6 +48,21 @@ offset_right = 8.0
 offset_bottom = 8.0
 text = "MAIN MENU"
 
+[node name="HBoxContainer2" type="HBoxContainer" parent="." unique_id=153797007]
+layout_mode = 0
+offset_left = 89.0
+offset_top = 165.0
+offset_right = 350.0
+offset_bottom = 205.0
+
+[node name="PlaySFXButton" type="Button" parent="HBoxContainer2" unique_id=115563282]
+layout_mode = 2
+text = "Play SFX"
+
+[node name="PlaySFXPitchButton" type="Button" parent="HBoxContainer2" unique_id=189028095]
+layout_mode = 2
+text = "Play SFX: pitch random"
+
 [connection signal="pressed" from="HBoxContainer/Music1Button" to="." method="_on_music_1_button_pressed"]
 [connection signal="pressed" from="HBoxContainer/Music2Button" to="." method="_on_music_2_button_pressed"]
 [connection signal="pressed" from="HBoxContainer/StopMusicNowButton" to="." method="_on_stop_music_now_button_pressed"]
@@ -55,3 +70,5 @@ text = "MAIN MENU"
 [connection signal="pressed" from="HBoxContainer/PauseMusicButton" to="." method="_on_pause_music_button_pressed"]
 [connection signal="pressed" from="HBoxContainer/ResumeMusicButton" to="." method="_on_resume_music_button_pressed"]
 [connection signal="pressed" from="ToMainMenuButton" to="." method="_on_to_main_menu_button_pressed"]
+[connection signal="pressed" from="HBoxContainer2/PlaySFXButton" to="." method="_on_play_sfx_button_pressed"]
+[connection signal="pressed" from="HBoxContainer2/PlaySFXPitchButton" to="." method="_on_play_sfx_pitch_button_pressed"]

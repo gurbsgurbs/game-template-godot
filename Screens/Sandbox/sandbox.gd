@@ -39,3 +39,11 @@ func _on_pause_music_button_pressed() -> void:
 
 func _on_resume_music_button_pressed() -> void:
 	AudioManager.resume_music()
+
+
+func _on_play_sfx_button_pressed() -> void:
+	AudioManager.play_sound(AudioManager.SoundEffect.UI_BUTTON_CLICK)
+
+
+func _on_play_sfx_pitch_button_pressed() -> void:
+	AudioManager.play_sound(AudioManager.SoundEffect.UI_BUTTON_CLICK, true)
