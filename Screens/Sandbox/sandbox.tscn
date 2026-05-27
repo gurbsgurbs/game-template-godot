@@ -18,21 +18,29 @@ offset_top = 94.0
 offset_right = 371.0
 offset_bottom = 134.0
 
-[node name="Button" type="Button" parent="HBoxContainer" unique_id=607025143]
+[node name="Music1Button" type="Button" parent="HBoxContainer" unique_id=607025143]
 layout_mode = 2
 text = "Play music 1"
 
-[node name="Button2" type="Button" parent="HBoxContainer" unique_id=779504122]
+[node name="Music2Button" type="Button" parent="HBoxContainer" unique_id=779504122]
 layout_mode = 2
 text = "Play music 2"
 
-[node name="Button3" type="Button" parent="HBoxContainer" unique_id=209610949]
+[node name="StopMusicNowButton" type="Button" parent="HBoxContainer" unique_id=966522504]
 layout_mode = 2
-text = "Play sfx"
+text = "Stop music at once"
 
-[node name="Button4" type="Button" parent="HBoxContainer" unique_id=966522504]
+[node name="StopMusicFadeButton" type="Button" parent="HBoxContainer" unique_id=1505432502]
 layout_mode = 2
-text = "Stop all music! NOW!"
+text = "Stop music with fade"
+
+[node name="PauseMusicButton" type="Button" parent="HBoxContainer" unique_id=209610949]
+layout_mode = 2
+text = "Pause Music"
+
+[node name="ResumeMusicButton" type="Button" parent="HBoxContainer" unique_id=2085682784]
+layout_mode = 2
+text = "Resume Music"
 
 [node name="ToMainMenuButton" type="Button" parent="." unique_id=663859924]
 layout_mode = 0
@@ -40,7 +48,10 @@ offset_right = 8.0
 offset_bottom = 8.0
 text = "MAIN MENU"
 
-[connection signal="pressed" from="HBoxContainer/Button" to="." method="_on_button_pressed"]
-[connection signal="pressed" from="HBoxContainer/Button2" to="." method="_on_button_2_pressed"]
-[connection signal="pressed" from="HBoxContainer/Button4" to="." method="_on_button_4_pressed"]
+[connection signal="pressed" from="HBoxContainer/Music1Button" to="." method="_on_music_1_button_pressed"]
+[connection signal="pressed" from="HBoxContainer/Music2Button" to="." method="_on_music_2_button_pressed"]
+[connection signal="pressed" from="HBoxContainer/StopMusicNowButton" to="." method="_on_stop_music_now_button_pressed"]
+[connection signal="pressed" from="HBoxContainer/StopMusicFadeButton" to="." method="_on_stop_music_fade_button_pressed"]
+[connection signal="pressed" from="HBoxContainer/PauseMusicButton" to="." method="_on_pause_music_button_pressed"]
+[connection signal="pressed" from="HBoxContainer/ResumeMusicButton" to="." method="_on_resume_music_button_pressed"]
 [connection signal="pressed" from="ToMainMenuButton" to="." method="_on_to_main_menu_button_pressed"]

@@ -25,7 +25,7 @@ const SFX_AUDIOS: Dictionary[SoundEffects, String] = {
 
 #endregion
 
-const DEFAULT_FADE_DURATION: float = 2.0
+const DEFAULT_FADE_DURATION: float = 3.0
 
 const VOLUME_SILENT: float = 0.0
 const VOLUME_FULL: float = 1.0
@@ -80,7 +80,7 @@ func stop_music(fade_duration: float = DEFAULT_FADE_DURATION) -> void:
 	
 	# Stop with a fade
 	fade_tween = create_tween()
-	fade_tween.tween_property(music_active_player, "volume_linear", VOLUME_SILENT, fade_duration)
+	fade_tween.tween_property(music_active_player, "volume_linear", VOLUME_SILENT, fade_duration).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN)
 	fade_tween.tween_callback(
 		func():
 			_music_stop_all_players()
