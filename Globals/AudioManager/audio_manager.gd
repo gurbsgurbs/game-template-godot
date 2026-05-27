@@ -59,7 +59,52 @@ func play_music(track: Music, fade_duration: float = DEFAULT_FADE_DURATION) -> v
 		_play_music_instantly(music_path)
 	else:
 		_play_music_crossfade(music_path, fade_duration)
+
+
+func stop_music(fade_duration: float = DEFAULT_FADE_DURATION) -> void:
+	# No music playing
+	if music_active_player.playing == false:
+		return
 	
+	# Stop immediately
+	if fade_duration <= 0.0:
+		if fade_tween != null and fade_tween.is_valid():
+			_kill_fade_tween()
+		_music_stop_all_players()
+		return
+	
+	# Crossfade is happening (fade_duration is ignored)
+	if fade_tween != null and fade_tween.is_valid():
+		_music_resolve_crossfade()
+		return
+	
+	# Stop with a fade
+	fade_tween = create_tween()
+	fade_tween.tween_property(music_active_player, "volume_linear", VOLUME_SILENT, fade_duration)
+	fade_tween.tween_callback(
+		func():
+			_music_stop_all_players()
+			_kill_fade_tween()
+	)
+
+
+func pause_music() -> void:
+	if music_active_player.playing == true:
+		music_active_player.stream_paused = true
+
+
+func resume_music() -> void:
+	if music_active_player.stream_paused == true:
+		music_active_player.stream_paused = false
+
+
+func is_music_playing() -> bool:
+	if music_active_player.playing == true and music_active_player.stream_paused == false:
+		return true
+	else:
+		return false
+
+
 
 #region BUS VOLUME FUNCTIONS
 
@@ -151,7 +196,7 @@ func _play_music_crossfade(music_path: String, fade_duration: float) -> void:
 	)
 
 
-func _music_resolve_crossfade(music_path: String, fade_duration: float) -> void:
+func _music_resolve_crossfade(music_path: String = "", fade_duration: float = 0.0) -> void:
 	_kill_fade_tween()
 	
 	fade_tween = create_tween()
@@ -161,7 +206,8 @@ func _music_resolve_crossfade(music_path: String, fade_duration: float) -> void:
 		func():
 			_music_stop_all_players()
 			_kill_fade_tween()
-			_play_music_crossfade(music_path, fade_duration)
+			if music_path != "":
+				_play_music_crossfade(music_path, fade_duration)
 	)
 	
 
