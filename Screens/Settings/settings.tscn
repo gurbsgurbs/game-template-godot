@@ -87,6 +87,9 @@ text = "Window size"
 [node name="WindowSize_Option" type="OptionButton" parent="VBoxContainer/HBoxContainer/Video Settings/Resolution_HBox" unique_id=672244200]
 unique_name_in_owner = true
 layout_mode = 2
+item_count = 1
+popup/item_0/text = "n/a"
+popup/item_0/id = 0
 
 [node name="MaxFPS_VBox" type="VBoxContainer" parent="VBoxContainer/HBoxContainer/Video Settings" unique_id=1079770364]
 layout_mode = 2
@@ -130,6 +133,10 @@ layout_mode = 2
 button_group = SubResource("ButtonGroup_knxsi")
 text = "240"
 
+[node name="ApplyVideo_Button" type="Button" parent="VBoxContainer/HBoxContainer/Video Settings" unique_id=1819865875]
+layout_mode = 2
+text = "Apply Video Settings"
+
 [node name="Audio Settings" type="VBoxContainer" parent="VBoxContainer/HBoxContainer" unique_id=1209736930]
 layout_mode = 2
 theme_override_constants/separation = 24
@@ -159,10 +166,6 @@ unique_name_in_owner = true
 layout_mode = 2
 slider_name = "Music"
 bus_name = "Music"
-
-[node name="ApplyButton" type="Button" parent="VBoxContainer" unique_id=1819865875]
-layout_mode = 2
-text = "Apply changes"
 
 [node name="ResetButton" type="Button" parent="VBoxContainer" unique_id=956110030]
 layout_mode = 2
@@ -202,6 +205,6 @@ text = "MAIN MENU debug"
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/Video Settings/MaxFPS_VBox/HBoxContainer/FPS_60_Radio" to="." method="_on_fps_60_radio_pressed"]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/Video Settings/MaxFPS_VBox/HBoxContainer/FPS_120_Radio" to="." method="_on_fps_120_radio_pressed"]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/Video Settings/MaxFPS_VBox/HBoxContainer/FPS_240_Radio" to="." method="_on_fps_240_radio_pressed"]
-[connection signal="pressed" from="VBoxContainer/ApplyButton" to="." method="_on_apply_button_pressed"]
-[connection signal="pressed" from="VBoxContainer/ResetButton" to="." method="_on_apply_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/Video Settings/ApplyVideo_Button" to="." method="_on_apply_video_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/ResetButton" to="." method="_on_reset_button_pressed"]
 [connection signal="pressed" from="DEBUG_BUTTON" to="." method="_on_debug_button_pressed"]

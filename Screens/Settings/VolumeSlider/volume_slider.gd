@@ -20,3 +20,4 @@ func _ready() -> void:
 
 func _on_value_changed(value:float) -> void:
 	AudioServer.set_bus_volume_linear(bus_index, value)
+	volume_value.text = str(int(round(value * 100)))

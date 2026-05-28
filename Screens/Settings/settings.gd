@@ -1,4 +1,5 @@
 extends Control
+## Settings screen
 
 # Video settings controls
 @onready var fullscreen_toggle: CheckButton = %Fullscreen_Toggle
@@ -29,15 +30,25 @@ extends Control
 
 func _ready() -> void:
 	_load_state_settings()
+	_pick_current_size_option()
 
 
 func _load_state_settings() -> void:
 	# ---- Graphics ----
+	var fullscreen: bool = SettingsManager.settings.get_value("Graphics", "fullscreen")
+	var aspect_ratio: String = SettingsManager.settings.get_value("Graphics", "aspect_ratio")
+	
 	# Fullscreen toggle
-	fullscreen_toggle.button_pressed = SettingsManager.settings.get_value("Graphics", "fullscreen")
+	fullscreen_toggle.button_pressed = fullscreen
+	_populate_size_options(aspect_ratio)
+	if fullscreen:
+		window_size_option.disabled = true
+		window_size_option.text = "n/a"
+	else:
+		_pick_current_size_option()
 	
 	# Aspect Ratio radio buttons
-	var aspect_ratio: String = SettingsManager.settings.get_value("Graphics", "aspect_ratio")
+	
 	match aspect_ratio:
 		"16_by_9":
 			_16_9_radio.button_pressed = true
@@ -45,11 +56,6 @@ func _load_state_settings() -> void:
 			_16_10_radio.button_pressed = true
 		"21_by_9":
 			_21_9_radio.button_pressed = true
-	_populate_size_options(aspect_ratio)
-	
-	# Window Size option dropdown
-	
-	
 	
 	# Max FPS radio buttons
 	match SettingsManager.settings.get_value("Graphics", "max_FPS"):
@@ -63,18 +69,12 @@ func _load_state_settings() -> void:
 			fps_120_radio.button_pressed = true
 		240:
 			fps_240_radio.button_pressed = true
-	
-	## ---- Audio ----
-	#mute_toggle.button_pressed = SettingsManager.settings.get_value("Audio", "mute")
-	#master_slider.volume_slider.value = SettingsManager.settings.get_value("Audio", "master_volume")
-	#sfx_slider.volume_slider.value = SettingsManager.settings.get_value("Audio", "sfx_volume")
-	#music_slider.volume_slider.value = SettingsManager.settings.get_value("Audio", "music_volume")
-	
+
 	# ---- Audio ----
-	mute_toggle.button_pressed = AudioManager.is_master_mute()
-	master_slider.volume_slider.value = AudioManager.get_master_volume()
-	sfx_slider.volume_slider.value = AudioManager.get_sfx_volume()
-	music_slider.volume_slider.value = AudioManager.get_music_volume()
+	mute_toggle.button_pressed = SettingsManager.settings.get_value("Audio", "mute")
+	master_slider.volume_slider.value = SettingsManager.settings.get_value("Audio", "master_volume")
+	sfx_slider.volume_slider.value = SettingsManager.settings.get_value("Audio", "sfx_volume")
+	music_slider.volume_slider.value = SettingsManager.settings.get_value("Audio", "music_volume")
 
 
 # TESTING: !!!!REMOVE LATER!!!!
@@ -94,26 +94,37 @@ func _on_fullscreen_toggle_toggled(toggled_on: bool) -> void:
 	else:
 		# Enable window size dropdown
 		window_size_option.disabled = false
-		_set_resolution_label_from_current_window_size() # TODO: 1- Probably change this: When tuning off from fullscreen, go to default res from screen size, always.
 		SettingsManager.settings.set_value("Graphics", "fullscreen", false)
+		var aspect_ratio: String = SettingsManager.settings.get_value("Graphics", "aspect_ratio")
+		_populate_size_options(aspect_ratio)
+		_pick_default_size_in_ratio(aspect_ratio)
 
 
 func _on_16_9_radio_pressed() -> void:
-	_populate_size_options("16_by_9")
-	_pick_default_size_in_ratio("16_by_9")
 	SettingsManager.settings.set_value("Graphics", "aspect_ratio", "16_by_9")
+	_populate_size_options("16_by_9")
+	if fullscreen_toggle.button_pressed:
+		_disable_window_size_option()
+		return
+	_pick_default_size_in_ratio("16_by_9")
 
 
 func _on_16_10_radio_pressed() -> void:
-	_populate_size_options("16_by_10")
-	_pick_default_size_in_ratio("16_by_10")
 	SettingsManager.settings.set_value("Graphics", "aspect_ratio", "16_by_10")
+	_populate_size_options("16_by_10")
+	if fullscreen_toggle.button_pressed:
+		_disable_window_size_option()
+		return
+	_pick_default_size_in_ratio("16_by_10")
 
 
 func _on_21_9_radio_pressed() -> void:
-	_populate_size_options("21_by_9")
-	_pick_default_size_in_ratio("21_by_9")
 	SettingsManager.settings.set_value("Graphics", "aspect_ratio", "21_by_9")
+	_populate_size_options("21_by_9")
+	if fullscreen_toggle.button_pressed:
+		_disable_window_size_option()
+		return
+	_pick_default_size_in_ratio("21_by_9")
 
 
 func _on_window_size_option_item_selected(_index: int) -> void:
@@ -147,6 +158,15 @@ func _on_fps_240_radio_pressed() -> void:
 #endregion
 
 
+func _on_apply_video_button_pressed() -> void:
+	SettingsManager.apply_video_settings()
+
+
+func _on_reset_button_pressed() -> void:
+	SettingsManager.reset_settings()
+	_load_state_settings()
+
+
 
 func _populate_size_options(ratio: String) -> void:
 	window_size_option.clear()
@@ -168,20 +188,28 @@ func _pick_default_size_in_ratio(aspect_ratio) -> void:
 
 
 func _pick_current_size_option() -> void:
-	pass
+	var saved_w: int = SettingsManager.settings.get_value("Graphics", "window_size_w")
+	var saved_h: int = SettingsManager.settings.get_value("Graphics", "window_size_h")
+	var saved_size: Vector2i = Vector2i(saved_w, saved_h)
+	
+	for i in window_size_option.item_count:
+		if window_size_option.get_item_metadata(i) == saved_size:
+			window_size_option.select(i)
+			return
+	
+	# Fallback: If saved size is not found for some reason, pick the default value from saved aspect ratio
+	var aspect_ratio: String = SettingsManager.settings.get_value("Graphics", "aspect_ratio")
+	_pick_default_size_in_ratio(aspect_ratio)
 
 
-func _on_apply_button_pressed() -> void:
-	SettingsManager.apply_settings()
+func _enable_window_size_option() -> void:
+	window_size_option.disabled = false
 
 
+func _disable_window_size_option() -> void:
+	window_size_option.disabled = true
+	window_size_option.text = "n/a"
 
-
-
-# TODO: 2 - Might remove this, not needed
-func _set_resolution_label_from_current_window_size() -> void:
-	var current_resolution: Vector2i = get_tree().root.size
-	window_size_option.text = str(current_resolution.x) + "x" + str(current_resolution.y)
 
 # TODO: 2 - Might remove this, not needed
 func _get_aspect_ratio_from_screen_size() -> String:
@@ -203,3 +231,4 @@ func _get_aspect_ratio_from_screen_size() -> String:
 
 func _on_debug_button_pressed() -> void:
 	ScreenManager.go_to_screen(ScreenManager.Screen.MAIN_MENU)
+	SettingsManager.save_audio_settings()

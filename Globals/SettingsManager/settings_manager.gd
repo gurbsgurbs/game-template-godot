@@ -1,5 +1,5 @@
 extends Node
-## Screen Manager
+## Settings Manager
 
 
 # Save configuration file
@@ -14,7 +14,7 @@ const DEFAULT_SETTINGS: Dictionary = {
 		"max_FPS": 120,
 	},
 	"Audio": {
-		"mute": true,
+		"mute": false,
 		"master_volume": 1.0,
 		"sfx_volume": 1.0,
 		"music_volume": 1.0,
@@ -52,11 +52,9 @@ const WINDOW_SIZES: Dictionary = {
 }
 
 
-# Virtual methods
-
 func _ready() -> void:
 	load_settings()
-	#apply_settings()
+	apply_video_settings()
 
 #region Save/Load/Reset Settings
 
@@ -88,7 +86,7 @@ func reset_settings() -> void:
 #endregion
 
 ## Apply the settings. Also saves the settings file.
-func apply_settings() -> void:
+func apply_video_settings() -> void:
 	
 	# Graphics
 	if settings.get_value("Graphics", "fullscreen") == true:
@@ -98,15 +96,27 @@ func apply_settings() -> void:
 	
 	_apply_max_fps_settings()
 	
-	# Audio
-	# Audio values are changed at runtime, and saved to settings here
+	save_settings()
+
+
+## Saves the audio settings in the configuration file.
+## Audio values are changed at runtime, and saved to settings using this function.
+func save_audio_settings() -> void:
 	settings.set_value("Audio", "mute", AudioServer.is_bus_mute(0))
 	settings.set_value("Audio", "master_volume", AudioServer.get_bus_volume_linear(0))
 	settings.set_value("Audio", "sfx_volume", AudioServer.get_bus_volume_linear(1))
 	settings.set_value("Audio", "music_volume", AudioServer.get_bus_volume_linear(2))
-	
 	save_settings()
-	pass
+
+
+func is_fullscreen() -> bool:
+	var current_mode = DisplayServer.window_get_mode()
+	if current_mode == DisplayServer.WINDOW_MODE_WINDOWED:
+		return false
+	elif current_mode == DisplayServer.WINDOW_MODE_FULLSCREEN or current_mode == DisplayServer.WINDOW_MODE_EXCLUSIVE_FULLSCREEN:
+		return true
+	else:
+		return false
 
 
 func _apply_fullscreen_settings() -> void:

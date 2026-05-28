@@ -5,24 +5,27 @@ extends Node
 
 #region MUSIC & SOUND LIBRARIES
 
+# List of available music track to be called in [method play_music()] function. [br]
+# 
 enum Music {
 	NONE,
 	THEME_TEST,
 	THEME_2_TEST,
 }
 
+# List of available sound effects to be called in [method play_sound()] function.
 enum SoundEffect {
 	UI_BUTTON_CLICK
 }
 
 const MUSIC_TRACKS: Dictionary[Music, String] = {
-	Music.THEME_TEST: "res://Assets/Test/music.wav",
-	Music.THEME_2_TEST: "res://Assets/Test/music_2.wav"
+	Music.THEME_TEST: "uid://3jde1wdxeeuo",
+	Music.THEME_2_TEST: "uid://bxshpuuigqf16",
 }
 
 
 const SFX_AUDIOS: Dictionary[SoundEffect, AudioStream] = {
-	SoundEffect.UI_BUTTON_CLICK: preload("res://Assets/Test/sfx.wav"),
+	SoundEffect.UI_BUTTON_CLICK: preload("uid://dgkf8dypdu4c8")
 }
 
 #endregion
