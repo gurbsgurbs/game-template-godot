@@ -30,7 +30,6 @@ extends Control
 
 func _ready() -> void:
 	_load_state_settings()
-	_pick_current_size_option()
 
 
 func _load_state_settings() -> void:
@@ -210,23 +209,6 @@ func _disable_window_size_option() -> void:
 	window_size_option.disabled = true
 	window_size_option.text = "n/a"
 
-
-# TODO: 2 - Might remove this, not needed
-func _get_aspect_ratio_from_screen_size() -> String:
-	var screen_size: Vector2i = DisplayServer.screen_get_size()
-	var aspect_ratio: float
-	var aspect_ratio_string: String
-	
-	aspect_ratio = float(screen_size.x) / float(screen_size.y)
-	
-	if aspect_ratio > 2.0:
-		aspect_ratio_string = "21_by_9"
-	elif aspect_ratio > 1.7:
-		aspect_ratio_string = "16_by_9"
-	elif aspect_ratio > 1.5:
-		aspect_ratio_string = "16_by_10"
-		
-	return aspect_ratio_string
 
 
 func _on_debug_button_pressed() -> void:
