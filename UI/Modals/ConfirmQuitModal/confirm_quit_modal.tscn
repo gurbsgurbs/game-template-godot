@@ -1,0 +1,71 @@
+[gd_scene format=3 uid="uid://bf6j0e30qtq4x"]
+
+[ext_resource type="Script" uid="uid://tk6kqjdr8cea" path="res://UI/Modals/ConfirmQuitModal/confirm_quit_modal.gd" id="1_t4dvn"]
+
+[node name="ConfirmQuitModal" type="Control" unique_id=789341151]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_t4dvn")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1983250575]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.2, 0.29411766, 0.39607844, 0.27450982)
+
+[node name="PanelContainer" type="PanelContainer" parent="." unique_id=1982933443]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -150.0
+offset_top = -74.5
+offset_right = 150.0
+offset_bottom = 74.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer" unique_id=1990758720]
+layout_mode = 2
+theme_override_constants/margin_left = 32
+theme_override_constants/margin_top = 32
+theme_override_constants/margin_right = 32
+theme_override_constants/margin_bottom = 32
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer" unique_id=864724597]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="Label" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=401711087]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Quit Game"
+
+[node name="Label2" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=1148362839]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Are you sure you want to quit?"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=86330983]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="Quit_Button" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer" unique_id=505083375]
+layout_mode = 2
+text = "Quit"
+
+[node name="Back_Button" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer" unique_id=916117659]
+layout_mode = 2
+text = "Back"
+
+[connection signal="pressed" from="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/Quit_Button" to="." method="_on_quit_button_pressed"]
+[connection signal="pressed" from="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/Back_Button" to="." method="_on_back_button_pressed"]

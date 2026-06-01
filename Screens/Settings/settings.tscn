@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://dai0tljd17vj1"]
 
 [ext_resource type="Script" uid="uid://ckopoc6njolww" path="res://Screens/Settings/settings.gd" id="1_nhyng"]
-[ext_resource type="PackedScene" uid="uid://bommxp8kbcha2" path="res://Screens/Settings/MuteToggle/mute_toggle.tscn" id="2_377lh"]
-[ext_resource type="PackedScene" uid="uid://dya5pycmmje6b" path="res://Screens/Settings/VolumeSlider/volume_slider.tscn" id="3_mlqq5"]
+[ext_resource type="PackedScene" uid="uid://bommxp8kbcha2" path="res://UI/Components/MuteToggle/mute_toggle.tscn" id="2_377lh"]
+[ext_resource type="PackedScene" uid="uid://dya5pycmmje6b" path="res://UI/Components/VolumeSlider/volume_slider.tscn" id="3_mlqq5"]
 [ext_resource type="Texture2D" uid="uid://bnxrb4qxgm6u0" path="res://icon.svg" id="4_s8lup"]
 
 [sub_resource type="ButtonGroup" id="ButtonGroup_yemuq"]

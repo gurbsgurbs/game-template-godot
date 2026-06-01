@@ -13,11 +13,12 @@ script = ExtResource("1_uqdog")
 
 [node name="DEBUG_BUTTON" type="Button" parent="." unique_id=626610397]
 layout_mode = 0
-offset_left = 64.0
-offset_top = 217.0
-offset_right = 199.0
-offset_bottom = 248.0
-text = "SETTINGS debug"
+offset_left = 57.0
+offset_top = 221.0
+offset_right = 192.0
+offset_bottom = 252.0
+text = "SETTINGS
+"
 
 [node name="DEBUG_BUTTON2" type="Button" parent="." unique_id=1598818212]
 layout_mode = 0
@@ -27,30 +28,23 @@ offset_right = 193.0
 offset_bottom = 307.0
 text = "To Sandbox"
 
-[node name="Label" type="Label" parent="." unique_id=943880350]
+[node name="DEBUG_BUTTON3" type="Button" parent="." unique_id=1352463465]
 layout_mode = 0
-offset_left = 71.0
-offset_top = 58.0
-offset_right = 265.0
-offset_bottom = 81.0
-text = "DEBUG_TEST_TRANSLATE_1"
+offset_left = 58.0
+offset_top = 331.0
+offset_right = 193.0
+offset_bottom = 362.0
+text = "Quit"
 
-[node name="Label3" type="Label" parent="." unique_id=1437900594]
+[node name="GameTitleLabel" type="Label" parent="." unique_id=1437900594]
 layout_mode = 0
-offset_left = 418.0
-offset_top = 144.0
-offset_right = 627.0
-offset_bottom = 167.0
-theme_override_font_sizes/font_size = 48
+offset_left = 76.0
+offset_top = 81.0
+offset_right = 356.0
+offset_bottom = 148.0
+theme_override_font_sizes/font_size = 64
 text = "GAME_TITLE"
-
-[node name="Label2" type="Label" parent="." unique_id=1420466460]
-layout_mode = 0
-offset_left = 71.0
-offset_top = 92.0
-offset_right = 280.0
-offset_bottom = 115.0
-text = "DEBUG_TEST_TRANSLATE_2"
 
 [connection signal="pressed" from="DEBUG_BUTTON" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="DEBUG_BUTTON2" to="." method="_on_debug_button_2_pressed"]
+[connection signal="pressed" from="DEBUG_BUTTON3" to="." method="_on_debug_button_3_pressed"]
