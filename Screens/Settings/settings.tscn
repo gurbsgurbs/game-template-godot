@@ -36,21 +36,21 @@ theme_override_constants/separation = 24
 
 [node name="VideoSettings_Label" type="Label" parent="VBoxContainer/HBoxContainer/Video Settings" unique_id=933002949]
 layout_mode = 2
-text = "Video Settings"
+text = "SETTINGS_VIDEO_HEADER"
 
 [node name="Fullscreen_Toggle" type="CheckButton" parent="VBoxContainer/HBoxContainer/Video Settings" unique_id=1096554328]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 0
 theme_override_constants/h_separation = 16
-text = "Fullscreen"
+text = "SETTINGS_VIDEO_FULLSCREEN"
 
 [node name="AspectRatio_VBox" type="VBoxContainer" parent="VBoxContainer/HBoxContainer/Video Settings" unique_id=1163222064]
 layout_mode = 2
 
 [node name="Aspect_Label" type="Label" parent="VBoxContainer/HBoxContainer/Video Settings/AspectRatio_VBox" unique_id=1687581141]
 layout_mode = 2
-text = "Aspect Ratio"
+text = "SETTINGS_VIDEO_ASPECT_RATIO"
 
 [node name="AspectRatio_HBox" type="HBoxContainer" parent="VBoxContainer/HBoxContainer/Video Settings/AspectRatio_VBox" unique_id=1277819989]
 layout_mode = 2
@@ -82,7 +82,7 @@ theme_override_constants/separation = 16
 
 [node name="WindowSize_Label" type="Label" parent="VBoxContainer/HBoxContainer/Video Settings/Resolution_HBox" unique_id=1268373054]
 layout_mode = 2
-text = "Window size"
+text = "SETTINGS_VIDEO_WINDOW_SIZE"
 
 [node name="WindowSize_Option" type="OptionButton" parent="VBoxContainer/HBoxContainer/Video Settings/Resolution_HBox" unique_id=672244200]
 unique_name_in_owner = true
@@ -96,7 +96,7 @@ layout_mode = 2
 
 [node name="MaxFPS_Label" type="Label" parent="VBoxContainer/HBoxContainer/Video Settings/MaxFPS_VBox" unique_id=690315972]
 layout_mode = 2
-text = "Max FPS"
+text = "SETTINGS_VIDEO_MAX_FPS"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/HBoxContainer/Video Settings/MaxFPS_VBox" unique_id=537184526]
 layout_mode = 2
@@ -135,7 +135,7 @@ text = "240"
 
 [node name="ApplyVideo_Button" type="Button" parent="VBoxContainer/HBoxContainer/Video Settings" unique_id=1819865875]
 layout_mode = 2
-text = "Apply Video Settings"
+text = "SETTINGS_VIDEO_APPLY_SETTINGS"
 
 [node name="Audio Settings" type="VBoxContainer" parent="VBoxContainer/HBoxContainer" unique_id=1209736930]
 layout_mode = 2
@@ -143,7 +143,7 @@ theme_override_constants/separation = 24
 
 [node name="Label" type="Label" parent="VBoxContainer/HBoxContainer/Audio Settings" unique_id=1685961758]
 layout_mode = 2
-text = "Audio Settings"
+text = "SETTINGS_AUDIO_HEADER"
 
 [node name="Mute_Toggle" parent="VBoxContainer/HBoxContainer/Audio Settings" unique_id=1255364813 instance=ExtResource("2_377lh")]
 unique_name_in_owner = true
@@ -152,24 +152,24 @@ layout_mode = 2
 [node name="Master_Slider" parent="VBoxContainer/HBoxContainer/Audio Settings" unique_id=1681206157 instance=ExtResource("3_mlqq5")]
 unique_name_in_owner = true
 layout_mode = 2
-slider_name = "Master Volume"
-bus_name = "Master"
+slider_name = "SETTINGS_AUDIO_MASTER_VOLUME"
+bus_code = "master"
 
 [node name="SFX_Slider" parent="VBoxContainer/HBoxContainer/Audio Settings" unique_id=1166500058 instance=ExtResource("3_mlqq5")]
 unique_name_in_owner = true
 layout_mode = 2
-slider_name = "Sound Effects"
-bus_name = "SoundEffects"
+slider_name = "SETTINGS_AUDIO_SFX_VOLUME"
+bus_code = "sfx"
 
 [node name="Music_Slider" parent="VBoxContainer/HBoxContainer/Audio Settings" unique_id=1328698655 instance=ExtResource("3_mlqq5")]
 unique_name_in_owner = true
 layout_mode = 2
-slider_name = "Music"
-bus_name = "Music"
+slider_name = "SETTINGS_AUDIO_MUSIC_VOLUME"
+bus_code = "music"
 
 [node name="ResetButton" type="Button" parent="VBoxContainer" unique_id=956110030]
 layout_mode = 2
-text = "Reset to Default"
+text = "SETTINGS_RESET_DEFAULT"
 
 [node name="TestThings" type="Control" parent="." unique_id=812644837]
 anchors_preset = 0
@@ -178,22 +178,50 @@ offset_bottom = 40.0
 
 [node name="Icon2" type="Sprite2D" parent="TestThings" unique_id=1325994580]
 unique_name_in_owner = true
-position = Vector2(976.49994, 299.00003)
+position = Vector2(232.50002, 853)
 scale = Vector2(1.9453125, 1.9453125)
 texture = ExtResource("4_s8lup")
 
 [node name="Icon" type="Sprite2D" parent="TestThings" unique_id=1790930194]
 unique_name_in_owner = true
-position = Vector2(980.4999, 168)
+position = Vector2(236.49988, 722)
 texture = ExtResource("4_s8lup")
 
 [node name="DEBUG_BUTTON" type="Button" parent="." unique_id=712372418]
 layout_mode = 0
-offset_left = 66.0
-offset_top = 541.0
-offset_right = 201.0
-offset_bottom = 572.0
-text = "MAIN MENU debug"
+offset_left = 24.0
+offset_top = 19.0
+offset_right = 180.0
+offset_bottom = 50.0
+text = "<---- MAIN MENU"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=652586643]
+layout_mode = 0
+offset_left = 798.0
+offset_top = 64.0
+offset_right = 1148.0
+offset_bottom = 104.0
+theme_override_constants/separation = 16
+
+[node name="Label" type="Label" parent="HBoxContainer" unique_id=1971249148]
+layout_mode = 2
+text = "SETTINGS_LOCALE_HEADER"
+
+[node name="Localization_Option" type="OptionButton" parent="HBoxContainer" unique_id=801492475]
+unique_name_in_owner = true
+layout_mode = 2
+item_count = 1
+popup/item_0/text = "placeholder"
+popup/item_0/id = 0
+
+[node name="Cursor_Toggle" type="CheckButton" parent="." unique_id=961694121]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 866.0
+offset_top = 248.0
+offset_right = 999.0
+offset_bottom = 279.0
+text = "Use Cursor"
 
 [connection signal="toggled" from="VBoxContainer/HBoxContainer/Video Settings/Fullscreen_Toggle" to="." method="_on_fullscreen_toggle_toggled"]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/Video Settings/AspectRatio_VBox/AspectRatio_HBox/16_9_Radio" to="." method="_on_16_9_radio_pressed"]
@@ -208,3 +236,5 @@ text = "MAIN MENU debug"
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/Video Settings/ApplyVideo_Button" to="." method="_on_apply_video_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/ResetButton" to="." method="_on_reset_button_pressed"]
 [connection signal="pressed" from="DEBUG_BUTTON" to="." method="_on_debug_button_pressed"]
+[connection signal="item_selected" from="HBoxContainer/Localization_Option" to="." method="_on_localization_option_item_selected"]
+[connection signal="toggled" from="Cursor_Toggle" to="." method="_on_cursor_toggle_toggled"]

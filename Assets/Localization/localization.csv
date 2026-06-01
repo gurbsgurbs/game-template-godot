@@ -1,0 +1,17 @@
+key,en,pt
+LANGUAGE_EN,English,Portuguese
+LANGUAGE_NAME,English,Português
+LANGUAGE_DIRECTION,ltr,ltr
+GAME_TITLE,Game Template for Godot,Template pra Jogo da Godot
+SETTINGS_VIDEO_HEADER,Video Settings,Configurações de Vídeo
+SETTINGS_VIDEO_FULLSCREEN,Fullscreen,Tela Cheia
+SETTINGS_VIDEO_ASPECT_RATIO,Aspect Ratio,Proporção do vídeo
+SETTINGS_VIDEO_WINDOW_SIZE,Window Size,Tamanho da Janela
+SETTINGS_VIDEO_MAX_FPS,Max. FPS,FPS Máximo
+SETTINGS_VIDEO_APPLY_SETTINGS,Apply Video Settings,Aplicar Configuração de Vídeo
+SETTINGS_AUDIO_HEADER,Audio Settings,Configurações de Áudio
+SETTINGS_AUDIO_MASTER_VOLUME,Master Volume,Volume Master
+SETTINGS_AUDIO_SFX_VOLUME,Sound Effects Volume,Volume dos Efeitos Sonoros
+SETTINGS_AUDIO_MUSIC_VOLUME,Music Volume,Volume da Música
+SETTINGS_LOCALE_HEADER,Language,Idioma
+SETTINGS_RESET_DEFAULT,Reset to Default,Retornar ao Padrão

@@ -18,7 +18,13 @@ const DEFAULT_SETTINGS: Dictionary = {
 		"master_volume": 1.0,
 		"sfx_volume": 1.0,
 		"music_volume": 1.0,
-	}
+	},
+	"Locale": {
+		"locale": "en"
+	},
+	"Visuals": {
+		"custom_cursor": true
+	},
 }
 
 var settings: ConfigFile = ConfigFile.new()
@@ -53,20 +59,21 @@ const WINDOW_SIZES: Dictionary = {
 
 
 func _ready() -> void:
-	load_settings()
+	load_settings_from_file()
 	apply_video_settings()
+	apply_settings()
 
 #region Save/Load/Reset Settings
 
 ## Saves the settings ConfigFile to disk.
-func save_settings() -> void:
+func save_settings_to_file() -> void:
 	var err: Error = settings.save(SAVE_PATH)
 	if err != OK:
 		push_error("SettingsManager: Saving settings failed. Error: " + str(err))
 
 
 ## Loads the settings from disk. If a settings file is not available, loads from default.
-func load_settings() -> void:
+func load_settings_from_file() -> void:
 	# Load settings + handle errors
 	var err: Error = settings.load(SAVE_PATH)
 	if err != OK:
@@ -96,17 +103,35 @@ func apply_video_settings() -> void:
 	
 	_apply_max_fps_settings()
 	
-	save_settings()
+	save_settings_to_file() # TODO: This should also move away.
+
+func apply_settings() -> void:
+	# ---- Audio ----
+	AudioManager.set_master_mute(settings.get_value("Audio", "mute"))
+	AudioManager.set_master_volume(settings.get_value("Audio", "master_volume"))
+	AudioManager.set_sfx_volume(settings.get_value("Audio", "sfx_volume"))
+	AudioManager.set_music_volume(settings.get_value("Audio", "music_volume"))
+	# ---- Locale ----
+	TranslationServer.set_locale(settings.get_value("Locale", "locale"))
+	# ---- Visuals ----
+	CursorManager.set_custom_cursor(settings.get_value("Visuals", "custom_cursor"))
 
 
-## Saves the audio settings in the configuration file.
-## Audio values are changed at runtime, and saved to settings using this function.
-func save_audio_settings() -> void:
-	settings.set_value("Audio", "mute", AudioServer.is_bus_mute(0))
-	settings.set_value("Audio", "master_volume", AudioServer.get_bus_volume_linear(0))
-	settings.set_value("Audio", "sfx_volume", AudioServer.get_bus_volume_linear(1))
-	settings.set_value("Audio", "music_volume", AudioServer.get_bus_volume_linear(2))
-	save_settings()
+
+### Saves the non-video settings in the configuration file.
+### When changed, these settings are seen in real-time, but they need to be saved.
+#func save_settings() -> void:
+	## ---- Audio ----
+	#settings.set_value("Audio", "mute", AudioManager.is_master_mute())
+	#settings.set_value("Audio", "master_volume", AudioManager.get_master_volume())
+	#settings.set_value("Audio", "sfx_volume", AudioManager.get_sfx_volume())
+	#settings.set_value("Audio", "music_volume", AudioManager.get_music_volume())
+	## ---- Locale ----
+	##settings.set_value("Locale", "locale", )
+	## ---- Visuals ----
+	
+	
+	save_settings_to_file()
 
 
 func is_fullscreen() -> bool:

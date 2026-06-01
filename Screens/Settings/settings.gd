@@ -23,6 +23,13 @@ extends Control
 @onready var sfx_slider: VBoxContainer = %SFX_Slider
 @onready var music_slider: VBoxContainer = %Music_Slider
 
+
+# Localization controls
+@onready var localization_option: OptionButton = %Localization_Option
+
+# Other
+@onready var cursor_toggle: CheckButton = %Cursor_Toggle
+
 # TESTING: FPS TEST !!!!REMOVE LATER!!!!
 @onready var icon_2: Sprite2D = %Icon2
 @onready var icon: Sprite2D = %Icon
@@ -30,6 +37,12 @@ extends Control
 
 func _ready() -> void:
 	_load_state_settings()
+
+
+# TESTING: !!!!REMOVE LATER!!!!
+func _process(delta: float) -> void:
+	icon.rotation_degrees += 30 * delta
+	icon_2.rotation_degrees -= 60 * delta
 
 
 func _load_state_settings() -> void:
@@ -47,7 +60,6 @@ func _load_state_settings() -> void:
 		_pick_current_size_option()
 	
 	# Aspect Ratio radio buttons
-	
 	match aspect_ratio:
 		"16_by_9":
 			_16_9_radio.button_pressed = true
@@ -70,17 +82,20 @@ func _load_state_settings() -> void:
 			fps_240_radio.button_pressed = true
 
 	# ---- Audio ----
+	print(master_slider.volume_slider.value)
 	mute_toggle.button_pressed = SettingsManager.settings.get_value("Audio", "mute")
 	master_slider.volume_slider.value = SettingsManager.settings.get_value("Audio", "master_volume")
+	print(master_slider.volume_slider.value)
 	sfx_slider.volume_slider.value = SettingsManager.settings.get_value("Audio", "sfx_volume")
 	music_slider.volume_slider.value = SettingsManager.settings.get_value("Audio", "music_volume")
-
-
-# TESTING: !!!!REMOVE LATER!!!!
-func _process(delta: float) -> void:
-	icon.rotation_degrees += 30 * delta
-	icon_2.rotation_degrees -= 60 * delta
 	
+	# ---- Localization ----
+	_populate_localization_option()
+	_pick_current_locale_option()
+	
+	# ---- Cursor ----
+	cursor_toggle.button_pressed = SettingsManager.settings.get_value("Visuals", "custom_cursor")
+
 
 #region Display Controls
 
@@ -131,9 +146,6 @@ func _on_window_size_option_item_selected(_index: int) -> void:
 	SettingsManager.settings.set_value("Graphics", "window_size_w", window_size.x)
 	SettingsManager.settings.set_value("Graphics", "window_size_h", window_size.y)
 
-#endregion
-
-#region Max FPS Controls
 
 func _on_fps_15_radio_pressed() -> void:
 	SettingsManager.settings.set_value("Graphics", "max_FPS", 15)
@@ -154,18 +166,31 @@ func _on_fps_120_radio_pressed() -> void:
 func _on_fps_240_radio_pressed() -> void:
 	SettingsManager.settings.set_value("Graphics", "max_FPS", 240)
 
-#endregion
-
 
 func _on_apply_video_button_pressed() -> void:
 	SettingsManager.apply_video_settings()
+
+#endregion
+
+
+#region Other controls
+
+func _on_localization_option_item_selected(index: int) -> void:
+	var locale = localization_option.get_item_metadata(index)
+	TranslationServer.set_locale(locale)
+	SettingsManager.settings.set_value("Locale", "locale", locale)
+
+
+func _on_cursor_toggle_toggled(toggled_on: bool) -> void:
+	CursorManager.set_custom_cursor(toggled_on)
+	SettingsManager.settings.set_value("Visuals", "custom_cursor", toggled_on)
 
 
 func _on_reset_button_pressed() -> void:
 	SettingsManager.reset_settings()
 	_load_state_settings()
 
-
+#endregion
 
 func _populate_size_options(ratio: String) -> void:
 	window_size_option.clear()
@@ -183,7 +208,6 @@ func _pick_default_size_in_ratio(aspect_ratio) -> void:
 			window_size_option.select(i)
 			window_size_option.emit_signal("item_selected", i) 
 			return
-
 
 
 func _pick_current_size_option() -> void:
@@ -210,7 +234,25 @@ func _disable_window_size_option() -> void:
 	window_size_option.text = "n/a"
 
 
+func _populate_localization_option() -> void:
+	localization_option.clear()
+	var index = 0
+	for locale in TranslationServer.get_loaded_locales():
+		var translation_resource = TranslationServer.get_translation_object(locale)
+		var native_name = translation_resource.get_message("LANGUAGE_NAME")
+		localization_option.add_item(native_name)
+		localization_option.set_item_metadata(index, locale)
+		index += 1
+
+
+func _pick_current_locale_option() -> void:
+	var saved_locale = SettingsManager.settings.get_value("Locale", "locale")
+	for i in localization_option.item_count:
+		if localization_option.get_item_metadata(i) == saved_locale:
+			localization_option.select(i)
+			return
+
 
 func _on_debug_button_pressed() -> void:
+	SettingsManager.save_settings_to_file()
 	ScreenManager.go_to_screen(ScreenManager.Screen.MAIN_MENU)
-	SettingsManager.save_audio_settings()

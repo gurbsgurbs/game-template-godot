@@ -24,6 +24,7 @@ buses/default_bus_layout="uid://dqwfklxm5x16j"
 SettingsManager="*uid://b62and67kk2mu"
 ScreenManager="*uid://c3ba5tukv64wy"
 AudioManager="*uid://cxkwflqkm74vn"
+CursorManager="*uid://byvntla2fxads"
 
 [display]
 
@@ -32,6 +33,12 @@ window/size/viewport_height=1080
 window/size/maximize_disabled=true
 window/stretch/mode="canvas_items"
 window/stretch/aspect="expand"
+mouse_cursor/custom_image="uid://jpmycgpd06p6"
+
+[internationalization]
+
+locale/translations=PackedStringArray("res://Assets/Localization/localization.EN.translation", "res://Assets/Localization/localization.PT.translation")
+locale/test="pt"
 
 [physics]
 

@@ -1,7 +1,5 @@
 extends TextureButton
 
 func _on_toggled(toggled_on: bool) -> void:
-	if toggled_on:
-		AudioServer.set_bus_mute(0, true)
-	else:
-		AudioServer.set_bus_mute(0, false)
+	AudioManager.set_master_mute(toggled_on)
+	SettingsManager.settings.set_value("Audio", "mute", toggled_on)
