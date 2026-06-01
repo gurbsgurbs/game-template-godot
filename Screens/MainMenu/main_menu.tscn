@@ -17,8 +17,7 @@ offset_left = 57.0
 offset_top = 221.0
 offset_right = 192.0
 offset_bottom = 252.0
-text = "SETTINGS
-"
+text = "UI_WORD_SETTINGS"
 
 [node name="DEBUG_BUTTON2" type="Button" parent="." unique_id=1598818212]
 layout_mode = 0
@@ -26,7 +25,7 @@ offset_left = 58.0
 offset_top = 276.0
 offset_right = 193.0
 offset_bottom = 307.0
-text = "To Sandbox"
+text = "*To Sandbox"
 
 [node name="DEBUG_BUTTON3" type="Button" parent="." unique_id=1352463465]
 layout_mode = 0
@@ -34,7 +33,7 @@ offset_left = 58.0
 offset_top = 331.0
 offset_right = 193.0
 offset_bottom = 362.0
-text = "Quit"
+text = "UI_WORD_QUIT"
 
 [node name="GameTitleLabel" type="Label" parent="." unique_id=1437900594]
 layout_mode = 0

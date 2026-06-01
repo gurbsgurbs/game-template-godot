@@ -48,12 +48,12 @@ size_flags_horizontal = 4
 [node name="Label" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=401711087]
 layout_mode = 2
 size_flags_horizontal = 4
-text = "Quit Game"
+text = "QUIT_MODAL_TITLE"
 
 [node name="Label2" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=1148362839]
 layout_mode = 2
 size_flags_horizontal = 4
-text = "Are you sure you want to quit?"
+text = "QUIT_MODAL_MESSAGE"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=86330983]
 layout_mode = 2
@@ -61,11 +61,11 @@ size_flags_horizontal = 4
 
 [node name="Quit_Button" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer" unique_id=505083375]
 layout_mode = 2
-text = "Quit"
+text = "UI_WORD_QUIT"
 
 [node name="Back_Button" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer" unique_id=916117659]
 layout_mode = 2
-text = "Back"
+text = "UI_WORD_BACK"
 
 [connection signal="pressed" from="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/Quit_Button" to="." method="_on_quit_button_pressed"]
 [connection signal="pressed" from="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/Back_Button" to="." method="_on_back_button_pressed"]

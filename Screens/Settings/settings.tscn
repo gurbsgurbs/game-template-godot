@@ -193,7 +193,7 @@ offset_left = 24.0
 offset_top = 19.0
 offset_right = 180.0
 offset_bottom = 50.0
-text = "<---- MAIN MENU"
+text = "UI_WORD_BACK"
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="." unique_id=1840095877]
 layout_mode = 0
@@ -204,7 +204,7 @@ offset_bottom = 130.0
 
 [node name="Label" type="Label" parent="VBoxContainer2" unique_id=1786516586]
 layout_mode = 2
-text = "**Other Settings"
+text = "*Other Settings"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer2" unique_id=652586643]
 layout_mode = 2
