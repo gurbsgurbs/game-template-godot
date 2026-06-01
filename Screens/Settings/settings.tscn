@@ -195,33 +195,36 @@ offset_right = 180.0
 offset_bottom = 50.0
 text = "<---- MAIN MENU"
 
-[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=652586643]
+[node name="VBoxContainer2" type="VBoxContainer" parent="." unique_id=1840095877]
 layout_mode = 0
-offset_left = 798.0
+offset_left = 826.0
 offset_top = 64.0
-offset_right = 1148.0
-offset_bottom = 104.0
+offset_right = 1176.0
+offset_bottom = 130.0
+
+[node name="Label" type="Label" parent="VBoxContainer2" unique_id=1786516586]
+layout_mode = 2
+text = "**Other Settings"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer2" unique_id=652586643]
+layout_mode = 2
 theme_override_constants/separation = 16
 
-[node name="Label" type="Label" parent="HBoxContainer" unique_id=1971249148]
+[node name="Label" type="Label" parent="VBoxContainer2/HBoxContainer" unique_id=1971249148]
 layout_mode = 2
 text = "SETTINGS_LOCALE_HEADER"
 
-[node name="Localization_Option" type="OptionButton" parent="HBoxContainer" unique_id=801492475]
+[node name="Localization_Option" type="OptionButton" parent="VBoxContainer2/HBoxContainer" unique_id=801492475]
 unique_name_in_owner = true
 layout_mode = 2
 item_count = 1
 popup/item_0/text = "placeholder"
 popup/item_0/id = 0
 
-[node name="Cursor_Toggle" type="CheckButton" parent="." unique_id=961694121]
+[node name="Cursor_Toggle" type="CheckButton" parent="VBoxContainer2" unique_id=961694121]
 unique_name_in_owner = true
-layout_mode = 0
-offset_left = 866.0
-offset_top = 248.0
-offset_right = 999.0
-offset_bottom = 279.0
-text = "Use Cursor"
+layout_mode = 2
+text = "SETTINGS_CUSTOM_CURSOR"
 
 [connection signal="toggled" from="VBoxContainer/HBoxContainer/Video Settings/Fullscreen_Toggle" to="." method="_on_fullscreen_toggle_toggled"]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/Video Settings/AspectRatio_VBox/AspectRatio_HBox/16_9_Radio" to="." method="_on_16_9_radio_pressed"]
@@ -236,5 +239,5 @@ text = "Use Cursor"
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/Video Settings/ApplyVideo_Button" to="." method="_on_apply_video_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/ResetButton" to="." method="_on_reset_button_pressed"]
 [connection signal="pressed" from="DEBUG_BUTTON" to="." method="_on_debug_button_pressed"]
-[connection signal="item_selected" from="HBoxContainer/Localization_Option" to="." method="_on_localization_option_item_selected"]
-[connection signal="toggled" from="Cursor_Toggle" to="." method="_on_cursor_toggle_toggled"]
+[connection signal="item_selected" from="VBoxContainer2/HBoxContainer/Localization_Option" to="." method="_on_localization_option_item_selected"]
+[connection signal="toggled" from="VBoxContainer2/Cursor_Toggle" to="." method="_on_cursor_toggle_toggled"]

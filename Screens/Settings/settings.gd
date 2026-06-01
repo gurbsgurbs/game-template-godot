@@ -82,10 +82,8 @@ func _load_state_settings() -> void:
 			fps_240_radio.button_pressed = true
 
 	# ---- Audio ----
-	print(master_slider.volume_slider.value)
 	mute_toggle.button_pressed = SettingsManager.settings.get_value("Audio", "mute")
 	master_slider.volume_slider.value = SettingsManager.settings.get_value("Audio", "master_volume")
-	print(master_slider.volume_slider.value)
 	sfx_slider.volume_slider.value = SettingsManager.settings.get_value("Audio", "sfx_volume")
 	music_slider.volume_slider.value = SettingsManager.settings.get_value("Audio", "music_volume")
 	
