@@ -31,7 +31,7 @@ const SFX_AUDIOS: Dictionary[SoundEffect, AudioStream] = {
 #endregion
 
 
-const DEFAULT_FADE_DURATION: float = 3.0
+const DEFAULT_FADE_DURATION: float = 4.0
 const DEFAULT_PITCH_RANDOM: float = 0.02
 
 const VOLUME_SILENT: float = 0.0
