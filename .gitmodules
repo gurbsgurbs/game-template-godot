@@ -1,0 +1,3 @@
+[submodule "addons/tween_composer"]
+	path = addons/tween_composer
+	url = https://github.com/gurbsgurbs/tween-composer-godot.git
