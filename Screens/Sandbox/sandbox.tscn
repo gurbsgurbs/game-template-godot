@@ -1,0 +1,74 @@
+[gd_scene format=3 uid="uid://wsdktf4n6gmf"]
+
+[ext_resource type="Script" uid="uid://duv7xvh20vt13" path="res://Screens/Sandbox/sandbox.gd" id="1_ua3rj"]
+
+[node name="Sandbox" type="Control" unique_id=171300956]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ua3rj")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=1172404711]
+layout_mode = 0
+offset_left = 88.0
+offset_top = 94.0
+offset_right = 371.0
+offset_bottom = 134.0
+
+[node name="Music1Button" type="Button" parent="HBoxContainer" unique_id=607025143]
+layout_mode = 2
+text = "Play music 1"
+
+[node name="Music2Button" type="Button" parent="HBoxContainer" unique_id=779504122]
+layout_mode = 2
+text = "Play music 2"
+
+[node name="StopMusicNowButton" type="Button" parent="HBoxContainer" unique_id=966522504]
+layout_mode = 2
+text = "Stop music at once"
+
+[node name="StopMusicFadeButton" type="Button" parent="HBoxContainer" unique_id=1505432502]
+layout_mode = 2
+text = "Stop music with fade"
+
+[node name="PauseMusicButton" type="Button" parent="HBoxContainer" unique_id=209610949]
+layout_mode = 2
+text = "Pause Music"
+
+[node name="ResumeMusicButton" type="Button" parent="HBoxContainer" unique_id=2085682784]
+layout_mode = 2
+text = "Resume Music"
+
+[node name="ToMainMenuButton" type="Button" parent="." unique_id=663859924]
+layout_mode = 0
+offset_right = 8.0
+offset_bottom = 8.0
+text = "MAIN MENU"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="." unique_id=153797007]
+layout_mode = 0
+offset_left = 89.0
+offset_top = 165.0
+offset_right = 350.0
+offset_bottom = 205.0
+
+[node name="PlaySFXButton" type="Button" parent="HBoxContainer2" unique_id=115563282]
+layout_mode = 2
+text = "Play SFX"
+
+[node name="PlaySFXPitchButton" type="Button" parent="HBoxContainer2" unique_id=189028095]
+layout_mode = 2
+text = "Play SFX: pitch random"
+
+[connection signal="pressed" from="HBoxContainer/Music1Button" to="." method="_on_music_1_button_pressed"]
+[connection signal="pressed" from="HBoxContainer/Music2Button" to="." method="_on_music_2_button_pressed"]
+[connection signal="pressed" from="HBoxContainer/StopMusicNowButton" to="." method="_on_stop_music_now_button_pressed"]
+[connection signal="pressed" from="HBoxContainer/StopMusicFadeButton" to="." method="_on_stop_music_fade_button_pressed"]
+[connection signal="pressed" from="HBoxContainer/PauseMusicButton" to="." method="_on_pause_music_button_pressed"]
+[connection signal="pressed" from="HBoxContainer/ResumeMusicButton" to="." method="_on_resume_music_button_pressed"]
+[connection signal="pressed" from="ToMainMenuButton" to="." method="_on_to_main_menu_button_pressed"]
+[connection signal="pressed" from="HBoxContainer2/PlaySFXButton" to="." method="_on_play_sfx_button_pressed"]
+[connection signal="pressed" from="HBoxContainer2/PlaySFXPitchButton" to="." method="_on_play_sfx_pitch_button_pressed"]

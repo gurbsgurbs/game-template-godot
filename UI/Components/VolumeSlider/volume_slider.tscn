@@ -1,0 +1,35 @@
+[gd_scene format=3 uid="uid://dya5pycmmje6b"]
+
+[ext_resource type="Script" uid="uid://bs5xlb7miy82d" path="res://UI/Components/VolumeSlider/volume_slider.gd" id="1_1fmoe"]
+
+[node name="Volume_Slider" type="VBoxContainer" unique_id=1681206157]
+size_flags_horizontal = 0
+size_flags_vertical = 8
+script = ExtResource("1_1fmoe")
+
+[node name="Name_Label" type="Label" parent="." unique_id=2037830894]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+text = "Bus name"
+
+[node name="VolumeControls" type="HBoxContainer" parent="." unique_id=261069006]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+
+[node name="Volume_Slider" type="HSlider" parent="VolumeControls" unique_id=1772897384]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 4
+max_value = 1.0
+step = 0.05
+value = 1.0
+
+[node name="Volume_Value" type="Label" parent="VolumeControls" unique_id=1056392429]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 8
+text = "100"

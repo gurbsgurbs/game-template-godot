@@ -12,14 +12,33 @@ config_version=5
 
 config/name="Game Template for Godot"
 config/features=PackedStringArray("4.6", "Mobile")
+run/max_fps=120
 config/icon="res://icon.svg"
+
+[audio]
+
+buses/default_bus_layout="uid://dqwfklxm5x16j"
+
+[autoload]
+
+SettingsManager="*uid://b62and67kk2mu"
+ScreenManager="*uid://c3ba5tukv64wy"
+AudioManager="*uid://cxkwflqkm74vn"
+CursorManager="*uid://byvntla2fxads"
 
 [display]
 
 window/size/viewport_width=1920
 window/size/viewport_height=1080
+window/size/maximize_disabled=true
 window/stretch/mode="canvas_items"
-window/stretch/aspect="keep_width"
+window/stretch/aspect="expand"
+mouse_cursor/custom_image="uid://jpmycgpd06p6"
+
+[internationalization]
+
+locale/translations=PackedStringArray("res://Assets/Localization/localization.EN.translation", "res://Assets/Localization/localization.PT.translation")
+locale/test="pt"
 
 [physics]
 

@@ -1,0 +1,241 @@
+[gd_scene format=3 uid="uid://dai0tljd17vj1"]
+
+[ext_resource type="Script" uid="uid://ckopoc6njolww" path="res://Screens/Settings/settings.gd" id="1_nhyng"]
+[ext_resource type="PackedScene" uid="uid://bommxp8kbcha2" path="res://UI/Components/MuteToggle/mute_toggle.tscn" id="2_377lh"]
+[ext_resource type="PackedScene" uid="uid://dya5pycmmje6b" path="res://UI/Components/VolumeSlider/volume_slider.tscn" id="3_mlqq5"]
+[ext_resource type="Texture2D" uid="uid://bnxrb4qxgm6u0" path="res://icon.svg" id="4_s8lup"]
+
+[sub_resource type="ButtonGroup" id="ButtonGroup_yemuq"]
+
+[sub_resource type="ButtonGroup" id="ButtonGroup_knxsi"]
+
+[node name="Settings" type="Control" unique_id=2036547224]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_nhyng")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=78907476]
+layout_mode = 0
+offset_left = 64.0
+offset_top = 64.0
+offset_right = 693.0
+offset_bottom = 424.0
+theme_override_constants/separation = 32
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer" unique_id=627956353]
+layout_mode = 2
+theme_override_constants/separation = 80
+
+[node name="VideoSettings" type="VBoxContainer" parent="VBoxContainer/HBoxContainer" unique_id=1309399548]
+layout_mode = 2
+theme_override_constants/separation = 24
+
+[node name="VideoSettings_Label" type="Label" parent="VBoxContainer/HBoxContainer/VideoSettings" unique_id=933002949]
+layout_mode = 2
+text = "SETTINGS_VIDEO_HEADER"
+
+[node name="Fullscreen_Toggle" type="CheckButton" parent="VBoxContainer/HBoxContainer/VideoSettings" unique_id=1096554328]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_constants/h_separation = 16
+text = "SETTINGS_VIDEO_FULLSCREEN"
+
+[node name="AspectRatio_VBox" type="VBoxContainer" parent="VBoxContainer/HBoxContainer/VideoSettings" unique_id=1163222064]
+layout_mode = 2
+
+[node name="Aspect_Label" type="Label" parent="VBoxContainer/HBoxContainer/VideoSettings/AspectRatio_VBox" unique_id=1687581141]
+layout_mode = 2
+text = "SETTINGS_VIDEO_ASPECT_RATIO"
+
+[node name="AspectRatio_HBox" type="HBoxContainer" parent="VBoxContainer/HBoxContainer/VideoSettings/AspectRatio_VBox" unique_id=1277819989]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="16_9_Radio" type="CheckBox" parent="VBoxContainer/HBoxContainer/VideoSettings/AspectRatio_VBox/AspectRatio_HBox" unique_id=642739546]
+unique_name_in_owner = true
+layout_mode = 2
+button_pressed = true
+button_group = SubResource("ButtonGroup_yemuq")
+text = "16:9"
+
+[node name="16_10_Radio" type="CheckBox" parent="VBoxContainer/HBoxContainer/VideoSettings/AspectRatio_VBox/AspectRatio_HBox" unique_id=1781727203]
+unique_name_in_owner = true
+layout_mode = 2
+button_group = SubResource("ButtonGroup_yemuq")
+text = "16:10"
+
+[node name="21_9_Radio" type="CheckBox" parent="VBoxContainer/HBoxContainer/VideoSettings/AspectRatio_VBox/AspectRatio_HBox" unique_id=1907087728]
+unique_name_in_owner = true
+layout_mode = 2
+button_group = SubResource("ButtonGroup_yemuq")
+text = "21:9
+"
+
+[node name="Resolution_HBox" type="HBoxContainer" parent="VBoxContainer/HBoxContainer/VideoSettings" unique_id=633694891]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="WindowSize_Label" type="Label" parent="VBoxContainer/HBoxContainer/VideoSettings/Resolution_HBox" unique_id=1268373054]
+layout_mode = 2
+text = "SETTINGS_VIDEO_WINDOW_SIZE"
+
+[node name="WindowSize_Option" type="OptionButton" parent="VBoxContainer/HBoxContainer/VideoSettings/Resolution_HBox" unique_id=672244200]
+unique_name_in_owner = true
+layout_mode = 2
+item_count = 1
+popup/item_0/text = "n/a"
+popup/item_0/id = 0
+
+[node name="MaxFPS_VBox" type="VBoxContainer" parent="VBoxContainer/HBoxContainer/VideoSettings" unique_id=1079770364]
+layout_mode = 2
+
+[node name="MaxFPS_Label" type="Label" parent="VBoxContainer/HBoxContainer/VideoSettings/MaxFPS_VBox" unique_id=690315972]
+layout_mode = 2
+text = "SETTINGS_VIDEO_MAX_FPS"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/HBoxContainer/VideoSettings/MaxFPS_VBox" unique_id=537184526]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="FPS_15_Radio" type="CheckBox" parent="VBoxContainer/HBoxContainer/VideoSettings/MaxFPS_VBox/HBoxContainer" unique_id=1832340043]
+unique_name_in_owner = true
+layout_mode = 2
+button_group = SubResource("ButtonGroup_knxsi")
+text = "15"
+
+[node name="FPS_30_Radio" type="CheckBox" parent="VBoxContainer/HBoxContainer/VideoSettings/MaxFPS_VBox/HBoxContainer" unique_id=1417099234]
+unique_name_in_owner = true
+layout_mode = 2
+button_group = SubResource("ButtonGroup_knxsi")
+text = "30"
+
+[node name="FPS_60_Radio" type="CheckBox" parent="VBoxContainer/HBoxContainer/VideoSettings/MaxFPS_VBox/HBoxContainer" unique_id=1380106497]
+unique_name_in_owner = true
+layout_mode = 2
+button_pressed = true
+button_group = SubResource("ButtonGroup_knxsi")
+text = "60"
+
+[node name="FPS_120_Radio" type="CheckBox" parent="VBoxContainer/HBoxContainer/VideoSettings/MaxFPS_VBox/HBoxContainer" unique_id=701200124]
+unique_name_in_owner = true
+layout_mode = 2
+button_group = SubResource("ButtonGroup_knxsi")
+text = "120"
+
+[node name="FPS_240_Radio" type="CheckBox" parent="VBoxContainer/HBoxContainer/VideoSettings/MaxFPS_VBox/HBoxContainer" unique_id=756223377]
+unique_name_in_owner = true
+layout_mode = 2
+button_group = SubResource("ButtonGroup_knxsi")
+text = "240"
+
+[node name="ApplyVideo_Button" type="Button" parent="VBoxContainer/HBoxContainer/VideoSettings" unique_id=1819865875]
+layout_mode = 2
+text = "SETTINGS_VIDEO_APPLY_SETTINGS"
+
+[node name="AudioSettings" type="VBoxContainer" parent="VBoxContainer/HBoxContainer" unique_id=1209736930]
+layout_mode = 2
+theme_override_constants/separation = 24
+
+[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer/AudioSettings" unique_id=1685961758]
+layout_mode = 2
+text = "SETTINGS_AUDIO_HEADER"
+
+[node name="Mute_Toggle" parent="VBoxContainer/HBoxContainer/AudioSettings" unique_id=1255364813 instance=ExtResource("2_377lh")]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="Master_Slider" parent="VBoxContainer/HBoxContainer/AudioSettings" unique_id=1681206157 instance=ExtResource("3_mlqq5")]
+unique_name_in_owner = true
+layout_mode = 2
+slider_name = "SETTINGS_AUDIO_MASTER_VOLUME"
+bus_code = "master"
+
+[node name="SFX_Slider" parent="VBoxContainer/HBoxContainer/AudioSettings" unique_id=1166500058 instance=ExtResource("3_mlqq5")]
+unique_name_in_owner = true
+layout_mode = 2
+slider_name = "SETTINGS_AUDIO_SFX_VOLUME"
+bus_code = "sfx"
+
+[node name="Music_Slider" parent="VBoxContainer/HBoxContainer/AudioSettings" unique_id=1328698655 instance=ExtResource("3_mlqq5")]
+unique_name_in_owner = true
+layout_mode = 2
+slider_name = "SETTINGS_AUDIO_MUSIC_VOLUME"
+bus_code = "music"
+
+[node name="OtherSettings" type="VBoxContainer" parent="VBoxContainer/HBoxContainer" unique_id=1840095877]
+layout_mode = 2
+theme_override_constants/separation = 24
+
+[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer/OtherSettings" unique_id=1786516586]
+layout_mode = 2
+text = "*Other Settings"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/HBoxContainer/OtherSettings" unique_id=652586643]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer/OtherSettings/HBoxContainer" unique_id=1971249148]
+layout_mode = 2
+text = "SETTINGS_LOCALE_HEADER"
+
+[node name="Localization_Option" type="OptionButton" parent="VBoxContainer/HBoxContainer/OtherSettings/HBoxContainer" unique_id=801492475]
+unique_name_in_owner = true
+layout_mode = 2
+item_count = 1
+popup/item_0/text = "placeholder"
+popup/item_0/id = 0
+
+[node name="Cursor_Toggle" type="CheckButton" parent="VBoxContainer/HBoxContainer/OtherSettings" unique_id=961694121]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 0
+text = "SETTINGS_CUSTOM_CURSOR"
+
+[node name="ResetButton" type="Button" parent="VBoxContainer" unique_id=956110030]
+layout_mode = 2
+text = "SETTINGS_RESET_DEFAULT"
+
+[node name="TestThings" type="Control" parent="." unique_id=812644837]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Icon2" type="Sprite2D" parent="TestThings" unique_id=1325994580]
+unique_name_in_owner = true
+position = Vector2(232.50002, 853)
+scale = Vector2(1.9453125, 1.9453125)
+texture = ExtResource("4_s8lup")
+
+[node name="Icon" type="Sprite2D" parent="TestThings" unique_id=1790930194]
+unique_name_in_owner = true
+position = Vector2(236.49988, 722)
+texture = ExtResource("4_s8lup")
+
+[node name="DEBUG_BUTTON" type="Button" parent="." unique_id=712372418]
+layout_mode = 0
+offset_left = 24.0
+offset_top = 19.0
+offset_right = 180.0
+offset_bottom = 50.0
+text = "UI_WORD_BACK"
+
+[connection signal="toggled" from="VBoxContainer/HBoxContainer/VideoSettings/Fullscreen_Toggle" to="." method="_on_fullscreen_toggle_toggled"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/VideoSettings/AspectRatio_VBox/AspectRatio_HBox/16_9_Radio" to="." method="_on_16_9_radio_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/VideoSettings/AspectRatio_VBox/AspectRatio_HBox/16_10_Radio" to="." method="_on_16_10_radio_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/VideoSettings/AspectRatio_VBox/AspectRatio_HBox/21_9_Radio" to="." method="_on_21_9_radio_pressed"]
+[connection signal="item_selected" from="VBoxContainer/HBoxContainer/VideoSettings/Resolution_HBox/WindowSize_Option" to="." method="_on_window_size_option_item_selected"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/VideoSettings/MaxFPS_VBox/HBoxContainer/FPS_15_Radio" to="." method="_on_fps_15_radio_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/VideoSettings/MaxFPS_VBox/HBoxContainer/FPS_30_Radio" to="." method="_on_fps_30_radio_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/VideoSettings/MaxFPS_VBox/HBoxContainer/FPS_60_Radio" to="." method="_on_fps_60_radio_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/VideoSettings/MaxFPS_VBox/HBoxContainer/FPS_120_Radio" to="." method="_on_fps_120_radio_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/VideoSettings/MaxFPS_VBox/HBoxContainer/FPS_240_Radio" to="." method="_on_fps_240_radio_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/VideoSettings/ApplyVideo_Button" to="." method="_on_apply_video_button_pressed"]
+[connection signal="item_selected" from="VBoxContainer/HBoxContainer/OtherSettings/HBoxContainer/Localization_Option" to="." method="_on_localization_option_item_selected"]
+[connection signal="toggled" from="VBoxContainer/HBoxContainer/OtherSettings/Cursor_Toggle" to="." method="_on_cursor_toggle_toggled"]
+[connection signal="pressed" from="VBoxContainer/ResetButton" to="." method="_on_reset_button_pressed"]
+[connection signal="pressed" from="DEBUG_BUTTON" to="." method="_on_debug_button_pressed"]
