@@ -114,7 +114,7 @@ func apply_settings() -> void:
 	# ---- Locale ----
 	TranslationServer.set_locale(settings.get_value("Locale", "locale"))
 	# ---- Visuals ----
-	CursorManager.set_custom_cursor(settings.get_value("Visuals", "custom_cursor"))
+	CursorManager.set_custom_cursor_enabled(settings.get_value("Visuals", "custom_cursor"))
 
 
 

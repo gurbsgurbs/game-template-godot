@@ -34,7 +34,6 @@ window/size/initial_position_type=4
 window/size/maximize_disabled=true
 window/stretch/mode="canvas_items"
 window/stretch/aspect="expand"
-mouse_cursor/custom_image="uid://jpmycgpd06p6"
 
 [editor_plugins]
 
@@ -42,6 +41,7 @@ enabled=PackedStringArray()
 
 [internationalization]
 
+locale/translations=PackedStringArray("res://Assets/Localization/localization.en.translation", "res://Assets/Localization/localization.pt.translation")
 locale/test="pt"
 
 [physics]
