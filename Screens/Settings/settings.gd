@@ -180,7 +180,7 @@ func _on_localization_option_item_selected(index: int) -> void:
 
 
 func _on_cursor_toggle_toggled(toggled_on: bool) -> void:
-	CursorManager.set_custom_cursor(toggled_on)
+	CursorManager.set_custom_cursor_enabled(toggled_on)
 	SettingsManager.settings.set_value("Visuals", "custom_cursor", toggled_on)
 
 

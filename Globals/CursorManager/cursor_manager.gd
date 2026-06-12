@@ -13,7 +13,12 @@ const CURSOR_IMAGES: Dictionary[Cursor, String] = {
 var custom_cursor_enabled: bool = true
 
 
-func set_custom_cursor(enable: bool) -> void:
+func set_custom_cursor(cursor: Cursor):
+	Input.set_custom_mouse_cursor(load(CURSOR_IMAGES[cursor]))
+
+
+
+func set_custom_cursor_enabled(enable: bool) -> void:
 	if enable == true:
 		_enable_custom_cursor()
 	else:
