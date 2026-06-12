@@ -158,13 +158,14 @@ func _apply_windowed_settings() -> void:
 	get_tree().root.content_scale_aspect = Window.CONTENT_SCALE_ASPECT_EXPAND
 	DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
 	DisplayServer.window_set_size(window_size)
-	_center_window()
+	#_center_window() # <- BUG: Was misbehaving when the computer has two monitors
 
 
 func _apply_max_fps_settings() -> void:
 	Engine.max_fps = settings.get_value("Graphics", "max_FPS") as int
 
 
+# Not being used, needs more work for identifying current screen.
 func _center_window() -> void:
 	var screen_size: Vector2i = DisplayServer.screen_get_size()
 	var window_size: Vector2i = DisplayServer.window_get_size()
@@ -173,6 +174,7 @@ func _center_window() -> void:
 	DisplayServer.window_set_position(target_position)
 
 
+# Not being used, currently
 func _get_aspect_ratio_from_screen_size() -> String:
 	var screen_size: Vector2i = DisplayServer.screen_get_size()
 	var aspect_ratio: float

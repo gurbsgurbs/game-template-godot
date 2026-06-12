@@ -92,6 +92,7 @@ func _load_state_settings() -> void:
 	_pick_current_locale_option()
 	
 	# ---- Cursor ----
+	print(SettingsManager.settings.get_value("Visuals", "custom_cursor"))
 	cursor_toggle.button_pressed = SettingsManager.settings.get_value("Visuals", "custom_cursor")
 
 
